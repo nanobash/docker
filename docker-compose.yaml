@@ -1,5 +1,12 @@
 version: "3"
 
+networks:
+  projextX:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
+
 services:
   nginx:
     container_name: nginx
@@ -13,9 +20,15 @@ services:
       - "${HOST_PORT}:${CONTAINER_PORT}"
     depends_on:
       - php
+    networks:
+      projextX:
+        ipv4_address: 192.168.100.10
 
   php:
     container_name: php${PHP_VERSION}
     image: php:${PHP_VERSION}-fpm
     volumes:
       - ${APPLICATION}:${WWW_DIR}
+    networks:
+      projextX:
+        ipv4_address: 192.168.100.11
