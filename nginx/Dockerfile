@@ -7,4 +7,5 @@ RUN apt-get -f install && \
     apt-get upgrade && \
     apt-get install -y apt-utils \
                         htop \
-                        net-tools
+                        net-tools \
+                        vim
