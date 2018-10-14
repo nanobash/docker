@@ -11,10 +11,10 @@ services:
     ports:
       - "8080:80"
     depends_on:
-      - php7
+      - php
 
-  php7:
-    container_name: php7
-    image: php:7-fpm
+  php:
+    container_name: php${PHP_VERSION}
+    image: php:${PHP_VERSION}-fpm
     volumes:
       - ${APPLICATION}:${WWW_DIR}
