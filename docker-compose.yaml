@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ${APPLICATION}:${WWW_DIR}
+      - ./nginx/sites/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - php7
+
+  php7:
+    container_name: php7
+    image: php:7-fpm
+    volumes:
+      - ${APPLICATION}:${WWW_DIR}
