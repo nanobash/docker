@@ -1,11 +1,18 @@
 FROM nginx:latest
 
-RUN apt-get -f install && \
+COPY nginx.conf /etc/nginx/nginx.conf
+
+RUN set -x \
+    apt-get -f install && \
     apt-get autoremove && \
     apt-get clean all && \
     apt-get update && \
-    apt-get upgrade && \
-    apt-get install -y apt-utils \
-                        htop \
-                        net-tools \
-                        vim
+    apt-get -y upgrade && \
+    apt-get install -y htop \
+                       net-tools
+
+ENTRYPOINT ["nginx"]
+
+CMD ["-g", "daemon off;"]
+
+EXPOSE 80 443
