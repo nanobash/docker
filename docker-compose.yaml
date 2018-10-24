@@ -9,26 +9,26 @@ networks:
 
 services:
   nginx:
-    container_name: nginx
     build:
       context: ./nginx
-    volumes:
-      - ${APPLICATION}:${WWW_DIR}
-      - ./nginx/sites/default.conf:/etc/nginx/conf.d/default.conf
-    working_dir: ${WWW_DIR}
-    ports:
-      - "${HOST_PORT}:${CONTAINER_PORT}"
+    container_name: nginx
     depends_on:
       - php
     networks:
       projextX:
         ipv4_address: 192.168.100.10
+    ports:
+      - "${HOST_PORT}:${CONTAINER_PORT}"
+    volumes:
+      - ${APPLICATION}:${WWW_DIR}
+      - ./nginx/sites/default.conf:/etc/nginx/conf.d/default.conf
+    working_dir: ${WWW_DIR}
 
   php:
     container_name: php${PHP_VERSION}
     image: php:${PHP_VERSION}-fpm
-    volumes:
-      - ${APPLICATION}:${WWW_DIR}
     networks:
       projextX:
         ipv4_address: 192.168.100.11
+    volumes:
+      - ${APPLICATION}:${WWW_DIR}
