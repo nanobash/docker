@@ -25,8 +25,15 @@ services:
     working_dir: ${WWW_DIR}
 
   php:
+    build:
+      args:
+        PHP_EXT_BCMATH: ${PHP_EXT_BCMATH}
+        PHP_EXT_CALENDAR: ${PHP_EXT_CALENDAR}
+        PHP_EXT_CTYPE: ${PHP_EXT_CTYPE}
+        PHP_EXT_DBA: ${PHP_EXT_DBA}
+        PHP_EXT_DOM: ${PHP_EXT_DOM}
+      context: ./php/${PHP_VERSION}
     container_name: php${PHP_VERSION}
-    image: php:${PHP_VERSION}-fpm
     networks:
       projextX:
         ipv4_address: 192.168.100.11
