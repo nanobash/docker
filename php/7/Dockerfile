@@ -41,7 +41,7 @@ RUN set -x \
     get_lib ${PHP_EXT_TIDY} libtidy-dev && \
     get_lib ${PHP_EXT_XSL} libxslt-dev && \
     get_lib ${PHP_EXT_ZIP} zlib1g-dev && \
-    apt-get install -y --no-install-recommends bash less $libs && \
+    apt-get install -y --no-install-recommends less $libs && \
     rm -rf /var/lib/apt/lists/*
 
 ARG PHP_EXT_BCMATH=false
