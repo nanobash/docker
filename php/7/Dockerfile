@@ -16,6 +16,7 @@ ARG PHP_EXT_RECODE=false
 ARG PHP_EXT_SNMP=false
 ARG PHP_EXT_TIDY=false
 ARG PHP_EXT_XSL=false
+ARG PHP_EXT_ZIP=false
 
 RUN set -x \
     apt-get -f install && \
@@ -39,7 +40,8 @@ RUN set -x \
     get_lib ${PHP_EXT_SNMP} libsnmp-dev snmp && \
     get_lib ${PHP_EXT_TIDY} libtidy-dev && \
     get_lib ${PHP_EXT_XSL} libxslt-dev && \
-    apt-get install -y --no-install-recommends bash less vim $libs && \
+    get_lib ${PHP_EXT_ZIP} zlib1g-dev && \
+    apt-get install -y --no-install-recommends bash less $libs && \
     rm -rf /var/lib/apt/lists/*
 
 ARG PHP_EXT_BCMATH=false
@@ -63,7 +65,6 @@ ARG PHP_EXT_SYSVSEM=false
 ARG PHP_EXT_SYSVSHM=false
 ARG PHP_EXT_WDDX=false
 ARG PHP_EXT_XMLRPC=false
-ARG PHP_EXT_ZIP=false
 
 RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     get_ext ${PHP_EXT_BCMATH} bcmath && \
