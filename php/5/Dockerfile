@@ -1,65 +1,68 @@
 FROM php:5.6-fpm
 
+ARG PHP_EXT_BZ2=false
+ARG PHP_EXT_DOM=false
+ARG PHP_EXT_ENCHANT=false
+ARG PHP_EXT_GD=false
+ARG PHP_EXT_GMP=false
+ARG PHP_EXT_IMAP=false
+ARG PHP_EXT_INTERBASE=false
+ARG PHP_EXT_LDAP=false
+ARG PHP_EXT_PDO_DBLIB=false
+ARG PHP_EXT_PDO_ODBC=false
+ARG PHP_EXT_PDO_PGSQL=false
+ARG PHP_EXT_PSPELL=false
+ARG PHP_EXT_RECODE=false
+ARG PHP_EXT_SNMP=false
+ARG PHP_EXT_TIDY=false
+ARG PHP_EXT_XSL=false
+
 RUN set -x \
     apt-get -f install && \
     apt-get autoremove && \
     apt-get clean all && \
     apt-get update && \
-    apt-get install -y --no-install-recommends libbz2-dev \
-        libxml2-dev \
-        libenchant-dev \
-        libpng-dev \
-        libgmp-dev \
-        libc-client-dev libkrb5-dev \
-        firebird-dev \
-        libldb-dev libldap2-dev \
-        freetds-dev \
-        unixodbc-dev \
-        libpq-dev \
-        libpspell-dev \
-        librecode-dev \
-        libsnmp-dev snmp \
-        libtidy-dev \
-        libxslt-dev && \
+    get_lib () if [ $1 = true ]; then shift; libs="$libs $*"; fi && \
+    get_lib ${PHP_EXT_BZ2} libbz2-dev && \
+    get_lib ${PHP_EXT_DOM} libxml2-dev && \
+    get_lib ${PHP_EXT_ENCHANT} libenchant-dev && \
+    get_lib ${PHP_EXT_GD} libpng-dev && \
+    get_lib ${PHP_EXT_GMP} libgmp-dev && \
+    get_lib ${PHP_EXT_IMAP} libc-client-dev libkrb5-dev && \
+    get_lib ${PHP_EXT_INTERBASE} firebird-dev && \
+    get_lib ${PHP_EXT_LDAP} libldb-dev libldap2-dev && \
+    get_lib ${PHP_EXT_PDO_DBLIB} freetds-dev && \
+    get_lib ${PHP_EXT_PDO_ODBC} unixodbc-dev && \
+    get_lib ${PHP_EXT_PDO_PGSQL} libpq-dev && \
+    get_lib ${PHP_EXT_PSPELL} libpspell-dev && \
+    get_lib ${PHP_EXT_RECODE} librecode-dev && \
+    get_lib ${PHP_EXT_SNMP} libsnmp-dev snmp && \
+    get_lib ${PHP_EXT_TIDY} libtidy-dev && \
+    get_lib ${PHP_EXT_XSL} libxslt-dev && \
+    apt-get install -y --no-install-recommends bash less vim $libs && \
     rm -rf /var/lib/apt/lists/*
 
 ARG PHP_EXT_BCMATH=false
-ARG PHP_EXT_BZ2=false
 ARG PHP_EXT_CALENDAR=false
 ARG PHP_EXT_DBA=false
-ARG PHP_EXT_DOM=false
-ARG PHP_EXT_ENCHANT=false
 ARG PHP_EXT_EXIF=false
 ARG PHP_EXT_FILEINFO=false
-ARG PHP_EXT_GD=false
 ARG PHP_EXT_GETTEXT=false
-ARG PHP_EXT_GMP=false
-ARG PHP_EXT_IMAP=false
-ARG PHP_EXT_INTERBASE=false
 ARG PHP_EXT_INTL=false
-ARG PHP_EXT_LDAP=false
 ARG PHP_EXT_MYSQLI=false
 ARG PHP_EXT_OPCACHE=false
 ARG PHP_EXT_PCNTL=false
-ARG PHP_EXT_PDO_DBLIB=false
 ARG PHP_EXT_PDO_FIREBIRD=false
 ARG PHP_EXT_PDO_MYSQL=false
-ARG PHP_EXT_PDO_ODBC=false
-ARG PHP_EXT_PDO_PGSQL=false
 ARG PHP_EXT_PGSQL=false
-ARG PHP_EXT_PSPELL=false
-ARG PHP_EXT_RECODE=false
 ARG PHP_EXT_SHMOP=false
-ARG PHP_EXT_SNMP=false
 ARG PHP_EXT_SOAP=false
 ARG PHP_EXT_SOCKETS=false
 ARG PHP_EXT_SYSCMSG=false
 ARG PHP_EXT_SYSVSEM=false
 ARG PHP_EXT_SYSVSHM=false
-ARG PHP_EXT_TIDY=false
 ARG PHP_EXT_WDDX=false
 ARG PHP_EXT_XMLRPC=false
-ARG PHP_EXT_XSL=false
 ARG PHP_EXT_ZIP=false
 
 RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
