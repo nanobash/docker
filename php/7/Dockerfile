@@ -64,7 +64,12 @@ ARG PHP_EXT_SYSCMSG=false
 ARG PHP_EXT_SYSVSEM=false
 ARG PHP_EXT_SYSVSHM=false
 ARG PHP_EXT_WDDX=false
+ARG PHP_EXT_XDEBUG=false
+ARG PHP_EXT_XDEBUG_HOST=false
+ARG PHP_EXT_XDEBUG_PORT=false
 ARG PHP_EXT_XMLRPC=false
+
+COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     get_ext ${PHP_EXT_BCMATH} bcmath && \
@@ -115,6 +120,12 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     get_ext ${PHP_EXT_XSL} xsl && \
     get_ext ${PHP_EXT_ZIP} zip && \
     if [ ! -z "$exts" ]; then docker-php-ext-install -j$(nproc) $exts; fi && \
+    if [ $PHP_EXT_XDEBUG = true ]; then \
+        pecl install xdebug && \
+        docker-php-ext-enable xdebug && \
+        echo "xdebug.remote_host=${PHP_EXT_XDEBUG_HOST}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
+        echo "xdebug.remote_port=${PHP_EXT_XDEBUG_PORT}" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+    fi && \
     echo "\nPHP ${PHP_VERSION} has been successfully installed\n"
 
 EXPOSE 9000
