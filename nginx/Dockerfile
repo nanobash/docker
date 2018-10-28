@@ -3,6 +3,7 @@ FROM nginx:1.15
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY sites/live.conf /etc/nginx/conf.d/live.conf
+COPY sites/symfony.live.conf /etc/nginx/conf.d/symfony.live.conf
 
 RUN set -x \
     apt-get -f install && \
