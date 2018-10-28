@@ -126,6 +126,8 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
         echo "xdebug.remote_host=${PHP_EXT_XDEBUG_HOST}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
         echo "xdebug.remote_port=${PHP_EXT_XDEBUG_PORT}" >> /usr/local/etc/php/conf.d/xdebug.ini; \
     fi && \
+    sed -i 's/^;catch_workers_output = yes/catch_workers_output = yes/g' /usr/local/etc/php-fpm.d/www.conf && \
+    sed -i 's/^;php_admin_flag\[log_errors\] = on/php_admin_flag[log_errors] = on/g' /usr/local/etc/php-fpm.d/www.conf && \
     echo "\nPHP ${PHP_VERSION} has been successfully installed\n"
 
 EXPOSE 9000
