@@ -9,6 +9,7 @@ networks:
 
 services:
   adminer:
+    container_name: adminer
     image: adminer:${ADMINER_VERSION}
     networks:
       projextX:
@@ -18,6 +19,7 @@ services:
     restart: always
 
   percona:
+    container_name: percona
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_USER: ${MYSQL_USER}
