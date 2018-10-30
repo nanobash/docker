@@ -8,17 +8,43 @@ networks:
         - subnet: 192.168.100.0/24
 
 services:
+  adminer:
+    image: adminer:${ADMINER_VERSION}
+    networks:
+      projextX:
+        ipv4_address: 192.168.100.20
+    ports:
+      - "${ADMINER_HOST_PORT}:8080"
+    restart: always
+
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    image: percona:${MYSQL_PERCONA_VERSION}
+    networks:
+      projextX:
+        ipv4_address: 192.168.100.12
+    ports:
+      - "${MYSQL_HOST_PORT}:3306"
+    restart: always
+    volumes:
+      - "${MYSQL_DATA_DIR}:/var/lib/mysql"
+
   nginx:
     build:
       context: ./nginx
     container_name: nginx
     depends_on:
       - php
+      - db
     networks:
       projextX:
         ipv4_address: 192.168.100.10
     ports:
-      - "${HOST_PORT}:${CONTAINER_PORT}"
+      - "${NGINX_HOST_PORT}:80"
     volumes:
       - ${APPLICATION}:${WWW_DIR}
     working_dir: ${WWW_DIR}
