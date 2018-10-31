@@ -98,7 +98,6 @@ services:
       context: ./php/${PHP_VERSION}
     container_name: php${PHP_VERSION}
     networks:
-      projextX:
-        ipv4_address: ${PHP_IPV4}
+      - projextX
     volumes:
       - ${APPLICATION}:${WWW_DIR}
