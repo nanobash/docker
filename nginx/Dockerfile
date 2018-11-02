@@ -2,8 +2,14 @@ FROM nginx:1.15
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY sites/live.conf /etc/nginx/conf.d/live.conf
-COPY sites/symfony.live.conf /etc/nginx/conf.d/symfony.live.conf
+COPY certs/live.test.crt /etc/nginx/certs/live.test.crt
+COPY certs/live.test.key /etc/nginx/certs/live.test.key
+
+ARG NGINX_DEFAULT=default.conf
+ARG NGINX_SYMFONY=symfony.conf
+
+COPY sites/${NGINX_DEFAULT} /etc/nginx/conf.d/${NGINX_DEFAULT}
+COPY sites/${NGINX_SYMFONY} /etc/nginx/conf.d/${NGINX_SYMFONY}
 
 RUN set -x \
     apt-get -f install && \

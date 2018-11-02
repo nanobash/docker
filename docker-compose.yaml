@@ -37,6 +37,9 @@ services:
 
   nginx:
     build:
+      args:
+        NGINX_DEFAULT: ${NGINX_DEFAULT}
+        NGINX_SYMFONY: ${NGINX_SYMFONY}
       context: ./nginx
     container_name: nginx
     depends_on:
