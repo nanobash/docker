@@ -18,6 +18,21 @@ services:
       - "${ADMINER_HOST_PORT}:8080"
     restart: always
 
+  postgres:
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    image: postgres:${POSTGRES_VERSION}
+    networks:
+      projextX:
+        ipv4_address: "${POSTGRES_IPV4}"
+    ports:
+      - "${POSTGRES_HOST_PORT}:5432"
+    restart: always
+    volumes:
+      - "${POSTGRES_DATA_DIR}:/var/lib/postgresql/data"
+
   percona:
     container_name: percona
     environment:
@@ -25,7 +40,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-    image: percona:${MYSQL_PERCONA_VERSION}
+    image: percona:${MYSQL_VERSION}
     networks:
       projextX:
         ipv4_address: "${MYSQL_PERCONA_IPV4}"
