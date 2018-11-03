@@ -7,8 +7,10 @@ COPY certs/live.test.key /etc/nginx/certs/live.test.key
 
 ARG NGINX_DEFAULT=default.conf
 ARG NGINX_SYMFONY=symfony.conf
+ARG NGINX_LARAVEL=laravel.conf
 
 COPY sites/${NGINX_DEFAULT} /etc/nginx/conf.d/${NGINX_DEFAULT}
+COPY sites/${NGINX_LARAVEL} /etc/nginx/conf.d/${NGINX_LARAVEL}
 COPY sites/${NGINX_SYMFONY} /etc/nginx/conf.d/${NGINX_SYMFONY}
 
 RUN set -x \
