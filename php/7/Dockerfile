@@ -130,4 +130,7 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     sed -i 's/^;php_admin_flag\[log_errors\] = on/php_admin_flag[log_errors] = on/g' /usr/local/etc/php-fpm.d/www.conf && \
     echo "\nPHP ${PHP_VERSION} has been successfully installed\n"
 
+RUN usermod -u 1000 www-data && \
+    groupmod -g 1000 www-data
+
 EXPOSE 9000
