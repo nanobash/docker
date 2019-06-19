@@ -1,5 +1,9 @@
 FROM nginx:1.15
 
+MAINTAINER Tornike Nanobashvili <tnanobashvili92@gmail.com>
+
+LABEL Runs Nginx web server for vanilla PHP, Symfony and Laravel frameworks
+
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY certs/live.test.crt /etc/nginx/certs/live.test.crt

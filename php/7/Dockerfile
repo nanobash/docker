@@ -1,5 +1,9 @@
 FROM php:7.2-fpm
 
+MAINTAINER Tornike Nanobashvili <tnanobashvili92@gmail.com>
+
+LABEL Runs PHP version 7.2-fpm preconfigured by .env variables
+
 ARG PHP_EXT_BZ2=false
 ARG PHP_EXT_DOM=false
 ARG PHP_EXT_ENCHANT=false
