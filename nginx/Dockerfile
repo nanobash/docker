@@ -1,8 +1,8 @@
 FROM nginx:1.15
 
-MAINTAINER Tornike Nanobashvili <tnanobashvili92@gmail.com>
+LABEL MAINTAINER="Tornike Nanobashvili <tnanobashvili92@gmail.com>"
 
-LABEL Runs Nginx web server for vanilla PHP, Symfony and Laravel frameworks
+LABEL DESCRIPTION="Runs Nginx web server for vanilla PHP, Symfony and Laravel frameworks"
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
