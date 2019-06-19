@@ -61,6 +61,8 @@ services:
     depends_on:
       - php
       - percona
+      - postgres
+      - adminer
     networks:
       projextX:
         ipv4_address: ${NGINX_IPV4}
