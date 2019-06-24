@@ -132,7 +132,9 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     fi && \
     sed -i 's/^;catch_workers_output = yes/catch_workers_output = yes/g' /usr/local/etc/php-fpm.d/www.conf && \
     sed -i 's/^;php_admin_flag\[log_errors\] = on/php_admin_flag[log_errors] = on/g' /usr/local/etc/php-fpm.d/www.conf && \
-    echo "\nPHP ${PHP_VERSION} has been successfully installed\n"
+    echo "\nPHP ${PHP_VERSION} has been successfully installed\n" && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    echo "Composer (dependency management tool for PHP) has been successfully installed\n"
 
 RUN usermod -u 1000 www-data && \
     groupmod -g 1000 www-data
