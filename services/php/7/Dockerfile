@@ -27,9 +27,9 @@ RUN set -x \
     apt-get autoremove && \
     apt-get clean all && \
     apt-get update && \
+    apt-get -y install libxml2-dev && \
     get_lib () if [ $1 = true ]; then shift; libs="$libs $*"; fi && \
     get_lib ${PHP_EXT_BZ2} libbz2-dev && \
-    get_lib ${PHP_EXT_DOM} libxml2-dev && \
     get_lib ${PHP_EXT_ENCHANT} libenchant-dev && \
     get_lib ${PHP_EXT_GD} libpng-dev && \
     get_lib ${PHP_EXT_GMP} libgmp-dev && \
@@ -44,7 +44,7 @@ RUN set -x \
     get_lib ${PHP_EXT_SNMP} libsnmp-dev snmp && \
     get_lib ${PHP_EXT_TIDY} libtidy-dev && \
     get_lib ${PHP_EXT_XSL} libxslt-dev && \
-    get_lib ${PHP_EXT_ZIP} zlib1g-dev && \
+    get_lib ${PHP_EXT_ZIP} libzip-dev && \
     apt-get install -y --no-install-recommends less $libs && \
     rm -rf /var/lib/apt/lists/*
 
