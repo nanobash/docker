@@ -1,4 +1,4 @@
-FROM nginx:1.15
+FROM nginx:1.17
 
 LABEL MAINTAINER="Tornike Nanobashvili <tnanobashvili92@gmail.com>"
 
