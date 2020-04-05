@@ -25,7 +25,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-    image: percona:${MYSQL_VERSION}
+    image: percona:5.7
     networks:
       projextX:
         ipv4_address: "${MYSQL_PERCONA_IPV4}"
