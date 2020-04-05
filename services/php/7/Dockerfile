@@ -119,7 +119,16 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     sed -i 's/^;php_admin_flag\[log_errors\] = on/php_admin_flag[log_errors] = on/g' /usr/local/etc/php-fpm.d/www.conf && \
     echo "\nPHP ${PHP_VERSION} has been successfully installed\n" && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-    echo "Composer (dependency management tool for PHP) has been successfully installed\n"
+    echo "Composer (dependency management tool for PHP) has been successfully installed\n" && \
+    curl -sL https://deb.nodesource.com/setup_12.x -o /tmp/nodesource_setup.sh && \
+    bash /tmp/nodesource_setup.sh && \
+    rm /tmp/nodesource_setup.sh && \
+    apt-get install -y nodejs && \
+    echo "Node.js has been successfully installed\n" && \
+    curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && apt-get install yarn && \
+    echo "Yarn (dependency management tool for Node.js) has been successfully installed\n"
 
 RUN usermod -u 1000 www-data && \
     groupmod -g 1000 www-data
