@@ -31,7 +31,7 @@ services:
       - "${POSTGRES_HOST_PORT}:5432"
     restart: always
     volumes:
-      - "${POSTGRES_DATA_DIR}:/var/lib/postgresql/data"
+      - "${DATA_DIR_PATH}:/var/lib/postgresql/data"
 
   percona:
     container_name: percona
@@ -48,7 +48,7 @@ services:
       - "${MYSQL_HOST_PORT}:3306"
     restart: always
     volumes:
-      - "${MYSQL_DATA_DIR}:/var/lib/mysql"
+      - "${DATA_DIR_PATH}:/var/lib/mysql"
 
   nginx:
     build:
