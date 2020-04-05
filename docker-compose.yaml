@@ -56,7 +56,7 @@ services:
         NGINX_DEFAULT: ${NGINX_DEFAULT}
         NGINX_LARAVEL: ${NGINX_LARAVEL}
         NGINX_SYMFONY: ${NGINX_SYMFONY}
-      context: ./nginx
+      context: ./services/nginx
     container_name: nginx
     depends_on:
       - php
@@ -116,7 +116,7 @@ services:
         PHP_EXT_XMLRPC: ${PHP_EXT_XMLRPC}
         PHP_EXT_XSL: ${PHP_EXT_XSL}
         PHP_EXT_ZIP: ${PHP_EXT_ZIP}
-      context: ./php/${PHP_VERSION}
+      context: ./services/php/${PHP_VERSION}
     container_name: php
     networks:
       projextX:
