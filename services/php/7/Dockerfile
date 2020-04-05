@@ -10,13 +10,10 @@ ARG PHP_EXT_ENCHANT=false
 ARG PHP_EXT_GD=false
 ARG PHP_EXT_GMP=false
 ARG PHP_EXT_IMAP=false
-ARG PHP_EXT_INTERBASE=false
 ARG PHP_EXT_LDAP=false
 ARG PHP_EXT_PDO_DBLIB=false
 ARG PHP_EXT_PDO_ODBC=false
 ARG PHP_EXT_PDO_PGSQL=false
-ARG PHP_EXT_PSPELL=false
-ARG PHP_EXT_RECODE=false
 ARG PHP_EXT_SNMP=false
 ARG PHP_EXT_TIDY=false
 ARG PHP_EXT_XSL=false
@@ -34,13 +31,10 @@ RUN set -x \
     get_lib ${PHP_EXT_GD} libpng-dev && \
     get_lib ${PHP_EXT_GMP} libgmp-dev && \
     get_lib ${PHP_EXT_IMAP} libc-client-dev libkrb5-dev && \
-    get_lib ${PHP_EXT_INTERBASE} firebird-dev && \
     get_lib ${PHP_EXT_LDAP} libldb-dev libldap2-dev && \
     get_lib ${PHP_EXT_PDO_DBLIB} freetds-dev && \
     get_lib ${PHP_EXT_PDO_ODBC} unixodbc-dev && \
     get_lib ${PHP_EXT_PDO_PGSQL} libpq-dev && \
-    get_lib ${PHP_EXT_PSPELL} libpspell-dev && \
-    get_lib ${PHP_EXT_RECODE} librecode-dev && \
     get_lib ${PHP_EXT_SNMP} libsnmp-dev snmp && \
     get_lib ${PHP_EXT_TIDY} libtidy-dev && \
     get_lib ${PHP_EXT_XSL} libxslt-dev && \
@@ -54,11 +48,9 @@ ARG PHP_EXT_DBA=false
 ARG PHP_EXT_EXIF=false
 ARG PHP_EXT_FILEINFO=false
 ARG PHP_EXT_GETTEXT=false
-ARG PHP_EXT_INTL=false
 ARG PHP_EXT_MYSQLI=false
 ARG PHP_EXT_OPCACHE=false
 ARG PHP_EXT_PCNTL=false
-ARG PHP_EXT_PDO_FIREBIRD=false
 ARG PHP_EXT_PDO_MYSQL=false
 ARG PHP_EXT_PGSQL=false
 ARG PHP_EXT_SHMOP=false
@@ -67,7 +59,6 @@ ARG PHP_EXT_SOCKETS=false
 ARG PHP_EXT_SYSCMSG=false
 ARG PHP_EXT_SYSVSEM=false
 ARG PHP_EXT_SYSVSHM=false
-ARG PHP_EXT_WDDX=false
 ARG PHP_EXT_XDEBUG=false
 ARG PHP_EXT_XDEBUG_HOST=false
 ARG PHP_EXT_XDEBUG_PORT=false
@@ -91,8 +82,6 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
         docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     fi && \
     get_ext ${PHP_EXT_IMAP} imap && \
-    get_ext ${PHP_EXT_INTERBASE} interbase && \
-    get_ext ${PHP_EXT_INTL} intl && \
     get_ext ${PHP_EXT_LDAP} ldap && \
     get_ext ${PHP_EXT_MYSQLI} mysqli && \
     get_ext ${PHP_EXT_OPCACHE} opcache && \
@@ -101,7 +90,6 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
         ln -s $(find / -iname libsybdb.a 2>/dev/null) /usr/lib; \
     fi && \
     get_ext ${PHP_EXT_PDO_DBLIB} pdo_dblib && \
-    get_ext ${PHP_EXT_PDO_FIREBIRD} pdo_firebird && \
     get_ext ${PHP_EXT_PDO_MYSQL} pdo_mysql && \
     if [ $PHP_EXT_PDO_ODBC = true ]; then \
         docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr; \
@@ -109,8 +97,6 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     get_ext ${PHP_EXT_PDO_ODBC} pdo_odbc && \
     get_ext ${PHP_EXT_PDO_PGSQL} pdo_pgsql && \
     get_ext ${PHP_EXT_PGSQL} pgsql && \
-    get_ext ${PHP_EXT_PSPELL} pspell && \
-    get_ext ${PHP_EXT_RECODE} recode && \
     get_ext ${PHP_EXT_SHMOP} shmop && \
     get_ext ${PHP_EXT_SNMP} snmp && \
     get_ext ${PHP_EXT_SOAP} soap && \
@@ -119,7 +105,6 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     get_ext ${PHP_EXT_SYSVSEM} sysvsem && \
     get_ext ${PHP_EXT_SYSVSHM} sysvshm && \
     get_ext ${PHP_EXT_TIDY} tidy && \
-    get_ext ${PHP_EXT_WDDX} wddx && \
     get_ext ${PHP_EXT_XMLRPC} xmlrpc && \
     get_ext ${PHP_EXT_XSL} xsl && \
     get_ext ${PHP_EXT_ZIP} zip && \
