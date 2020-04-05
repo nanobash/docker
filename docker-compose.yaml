@@ -99,9 +99,9 @@ services:
   nginx:
     build:
       args:
-        NGINX_DEFAULT: ${NGINX_DEFAULT}
+#        NGINX_DEFAULT: ${NGINX_DEFAULT}
         NGINX_LARAVEL: ${NGINX_LARAVEL}
-        NGINX_SYMFONY: ${NGINX_SYMFONY}
+#        NGINX_SYMFONY: ${NGINX_SYMFONY}
       context: ./services/nginx
     container_name: nginx
     depends_on:
