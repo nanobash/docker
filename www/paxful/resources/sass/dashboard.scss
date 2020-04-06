@@ -1,0 +1,132 @@
+@import 'variables';
+
+body {
+    background-color: $body-bg;
+}
+
+/* Dashboard header styling begin
+ *********************************************/
+.dashboard-header {
+    background-color: $dashboard-primary-color;
+}
+
+.dashboard-header-nav {
+    float: right;
+}
+
+.dashboard-header-nav a, .dashboard-menu a {
+    color: white;
+}
+
+.dashboard-header-nav a:hover {
+    text-decoration: underline;
+}
+
+/* -------------------------------------------
+ *********************************************/
+
+/* Dashboard menu styling begin
+ *********************************************/
+.dashboard-menu {
+    background-color: white;
+    border-bottom: 0.2rem solid $dashboard-border-color;
+}
+
+.dashboard-menu a {
+    color: $dashboard-primary-color;
+    font-weight: bold;
+    border-right: 1px solid $dashboard-border-color;
+}
+
+.dashboard-menu a:first-child {
+    border-left: 1px solid $dashboard-border-color;
+}
+
+.dashboard-menu a:hover {
+    background-color: #F2F7FA;
+}
+
+/* -------------------------------------------
+ *********************************************/
+
+/* Dashboard trades article begin
+ *********************************************/
+.dashboard-trades-article {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+/* -------------------------------------------
+ *********************************************/
+
+/* Dashboard trade item styling begin
+ *********************************************/
+.dashboard-trade-item {
+    position: relative;
+    border-left: 0.1rem solid $dashboard-border-color;
+    border-right: 0.1rem solid $dashboard-border-color;
+    border-bottom: 0.1rem solid $dashboard-border-color;
+}
+
+.dashboard-trade-item-username {
+    margin-left: 1.2rem;
+    padding-top: 1.2rem;
+    font-size: 0.8rem;
+    color: #8A8A8B;
+    font-weight: bold;
+}
+
+.dashboard-trade-item-payment-method {
+    margin-top: 0.3rem;
+    margin-left: 2.1rem;
+    font-size: 1rem;
+    color: $dashboard-primary-color;
+    font-weight: bold;
+}
+
+.dashboard-trade-item-amount {
+    margin-left: 2.1rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #8A8A8B;
+}
+
+/* -------------------------------------------
+ *********************************************/
+
+/* Dashboard trade item user styling
+ *********************************************/
+.dashboard-trade-item-user {
+    background-color: silver;
+    position: absolute;
+    top: 1.6rem;
+    right: 1.3rem;
+}
+
+.dashboard-trade-item-user svg {
+    position: absolute;
+    right: 1.5rem;
+}
+
+.dashboard-trade-item-user span {
+    position: absolute;
+    top: 1.3rem;
+    right: 0;
+    width: 4rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.paid {
+    color: green;
+}
+
+.not-paid {
+    color: gray;
+}
+
+/*
+ *********************************************/
