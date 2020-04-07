@@ -6,8 +6,8 @@ export default class Menu extends React.Component
     render() {
         return (
             <Row className={"dashboard-menu"}>
-                <Col md={12}>
-                    <Navbar expand={"md"}>
+                <Col sm={12}>
+                    <Navbar expand={"sm"}>
                         <Nav.Link>Overview</Nav.Link>
                         <Nav.Link>Trades</Nav.Link>
                         <Nav.Link>Disputes</Nav.Link>

@@ -46,13 +46,13 @@ class Dashboard extends React.Component
         ];
 
         return (
-            <Container fluid={"md"}>
+            <Container fluid={"sm"} className={"dashboard-container"}>
                 <Header />
                 <Menu />
                 <Row>
                     <TradesArticle trades={trades} />
-                    <Col md={6}>Middle side</Col>
-                    <Col md={3}>Right side</Col>
+                    <Col sm={6}>Middle side</Col>
+                    <Col sm={3}>Right side</Col>
                 </Row>
             </Container>
         );

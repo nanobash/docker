@@ -6,7 +6,7 @@ export default class Header extends React.Component
     render() {
         return (
             <Row className={"dashboard-header"}>
-                <Col md={2}>
+                <Col sm={2}>
                     <h1>
                         <svg enableBackground="new 0 0 123.7 23.3" viewBox="0 0 123.7 23.3"
                              xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
@@ -16,8 +16,8 @@ export default class Header extends React.Component
                     </h1>
                 </Col>
 
-                <Col md={10}>
-                    <Navbar expand={"md"} className={"dashboard-header-nav"}>
+                <Col sm={10}>
+                    <Navbar expand={"sm"} className={"dashboard-header-nav"}>
                         <Nav.Link href={"#"}>Buy bitcoins</Nav.Link>
                         <Nav.Link href={"#"}>Sell bitcoins</Nav.Link>
                         <Nav.Link href={"#"}>Wallet</Nav.Link>
