@@ -25,7 +25,7 @@ export default class Trade extends React.Component
                 </div>
 
                 <div className={"dashboard-trade-item-amount"}>
-                    {item.amount}
+                    {item.amountUSD}
                     <IconContext.Provider value={{ color: "green", size: "0.9rem" }}>
                         <IoLogoUsd />
                     </IconContext.Provider>
@@ -39,7 +39,7 @@ export default class Trade extends React.Component
 
                 <div className={"dashboard-trade-item-user-icon"}>
                     <FaUserSecret />
-                    <span className={item.status === 'PAID' ? 'paid' : 'not-paid'}>{item.status}</span>
+                    <span className={item.paymentStatus === 'PAID' ? 'paid' : 'not-paid'}>{item.paymentStatus}</span>
                 </div>
             </div>
         );

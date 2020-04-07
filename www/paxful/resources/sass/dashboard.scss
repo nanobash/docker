@@ -11,6 +11,10 @@ body {
 
 }
 
+.hide {
+    display: none !important;
+}
+
 .dashboard-article-trades, .dashboard-section, .dashboard-aside-trades {
     background-color: white;
     min-height: calc(100vh - 7rem);
@@ -152,6 +156,7 @@ body {
 }
 
 .section-header {
+    margin-bottom: 2rem;
     position: relative;
     border-bottom: 0.1rem solid $dashboard-border-color;
 }
@@ -197,6 +202,41 @@ body {
 .reputation-minus {
     color: red;
 }
+
+.section-content {
+    margin-bottom: 2rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.section-content div {
+    text-align: justify;
+}
+
+.section-content div:nth-child(even) {
+    width: calc(100% - 4rem);
+}
+
+.section-content div:nth-child(2) {
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+}
+
+.section-content div:nth-child(odd) {
+    width: 4rem;
+    text-align: center;
+}
+
+.section-content-comment-not-reply {
+    background-color: #4A5F82;
+    color: white;
+}
+
+.section-content-comment-reply {
+    background-color: white;
+    color: #4A5F82;
+}
+
 /* -------------------------------------------
  *********************************************/
 
