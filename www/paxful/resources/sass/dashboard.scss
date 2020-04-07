@@ -151,3 +151,17 @@ body {
         border-left: 0;
     }
 }
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .dashboard-trade-item-user {
+        position: absolute;
+        top: 4.2rem;
+        right: 0;
+    }
+
+    .dashboard-trade-item-user svg {
+        position: relative;
+        top: 0.9rem;
+        right: 4rem;
+    }
+}
