@@ -6,6 +6,7 @@ import '../../sass/dashboard.scss';
 import Header from './Header';
 import Menu from './Menu';
 import Trade from "./Trade";
+import SectionHeader from "./SectionHeader";
 
 class Dashboard extends React.Component
 {
@@ -54,7 +55,7 @@ class Dashboard extends React.Component
                         {trades.map(trade => <Trade item={trade} key={trade.id} />)}
                     </Col>
                     <Col md={6} className={"dashboard-section"}>
-                        Middle side
+                        <SectionHeader />
                     </Col>
                     <Col md={3} className={"dashboard-aside-trades"}>
                         Right side
