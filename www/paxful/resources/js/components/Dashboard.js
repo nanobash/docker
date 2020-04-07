@@ -50,13 +50,13 @@ class Dashboard extends React.Component
                 <Header />
                 <Menu />
                 <Row>
-                    <Col sm={3} className={"dashboard-article-trades"}>
+                    <Col md={3} className={"dashboard-article-trades"}>
                         {trades.map(trade => <Trade item={trade} key={trade.id} />)}
                     </Col>
-                    <Col sm={6} className={"dashboard-section"}>
+                    <Col md={6} className={"dashboard-section"}>
                         Middle side
                     </Col>
-                    <Col sm={3} className={"dashboard-aside-trade-details"}>
+                    <Col md={3} className={"dashboard-aside-trades"}>
                         Right side
                     </Col>
                 </Row>

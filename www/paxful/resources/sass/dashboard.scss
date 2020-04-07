@@ -11,7 +11,7 @@ body {
 
 }
 
-.dashboard-article-trades, .dashboard-section, .dashboard-aside-trade-details {
+.dashboard-article-trades, .dashboard-section, .dashboard-aside-trades {
     background-color: white;
     min-height: calc(100vh - 7rem);
 }
@@ -78,7 +78,7 @@ body {
     box-shadow: 0.5rem 0 0.5rem 0 $dashboard-border-color;
 }
 
-.dashboard-aside-trade-details {
+.dashboard-aside-trades {
     position: relative;
     border-bottom: 0.1rem solid $dashboard-border-color;
     box-shadow: -0.5rem 0 0.5rem 0 $dashboard-border-color;
@@ -113,34 +113,34 @@ body {
 
 /* Dashboard trade item user styling
  *********************************************/
-.dashboard-trade-item-user {
+.dashboard-trade-item-user-icon {
     position: absolute;
     top: 1.6rem;
     right: 0.5rem;
 }
 
-.dashboard-trade-item-user svg {
+.dashboard-trade-item-user-icon svg {
     position: absolute;
-    right: 1.5rem;
+    right: 0;
 }
 
-.dashboard-trade-item-user span {
+.paid, .not-paid {
     position: absolute;
-    top: 1.3rem;
-    right: 0;
+    top: 2.8rem;
     width: 4rem;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: bold;
     text-align: center;
 }
 
 .paid {
     color: green;
-    font-size: 0.8rem;
+    right: -1.2rem;
 }
 
 .not-paid {
     color: red;
+    right: -0.5rem;
 }
 
 /*
@@ -153,7 +153,7 @@ body {
 /* -------------------------------------------
  *********************************************/
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 767px) {
     .dashboard-menu a:first-child {
         border-left: 0;
     }
@@ -163,8 +163,8 @@ body {
     }
 }
 
-@media screen and (min-width: 576px) and (max-width: 1199px) {
-    .dashboard-trade-item-user {
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .dashboard-trade-item-user-icon {
         display: none;
     }
 

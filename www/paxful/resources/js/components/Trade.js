@@ -37,7 +37,7 @@ export default class Trade extends React.Component
                     </IconContext.Provider>
                 </div>
 
-                <div className={"dashboard-trade-item-user"}>
+                <div className={"dashboard-trade-item-user-icon"}>
                     <FaUserSecret />
                     <span className={item.status === 'PAID' ? 'paid' : 'not-paid'}>{item.status}</span>
                 </div>
