@@ -5,8 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../sass/dashboard.scss';
 import Header from './Header';
 import Menu from './Menu';
-import Trade from "./Trade";
-import SectionHeader from "./SectionHeader";
+import Trade from './Trade';
+import SectionHeader from './SectionHeader';
 
 class Dashboard extends React.Component
 {
@@ -15,36 +15,46 @@ class Dashboard extends React.Component
             {
                 id: 10,
                 username: 'Jannie Smith',
-                paymentMethod: 'PayPal',
-                amount: 12000,
+                reputationPlus: 37,
+                reputationMinus: 1,
+                amountUSD: 12000,
                 bitcoin: 2.26,
-                status: 'PAID'
+                paymentMethod: 'PayPal',
+                paymentStatus: 'PAID',
             },
             {
                 id: 12,
                 username: 'John Doe',
-                paymentMethod: 'Amazon Gift Card',
-                amount: 5100,
+                reputationPlus: 37,
+                reputationMinus: 1,
+                amountUSD: 5100,
                 bitcoin: 1.2,
-                status: 'NOT PAID'
+                paymentMethod: 'Amazon Gift Card',
+                paymentStatus: 'NOT PAID',
             },
             {
                 id: 15,
                 username: 'Kate Smith',
-                paymentMethod: 'iTunes Gift Card',
-                amount: 20,
+                reputationPlus: 37,
+                reputationMinus: 1,
+                amountUSD: 20,
                 bitcoin: 0.00003,
-                status: 'PAID'
+                paymentMethod: 'iTunes Gift Card',
+                paymentStatus: 'PAID',
             },
             {
                 id: 16,
                 username: 'Jimmy Doe',
-                paymentMethod: 'Mastercard',
-                amount: 20000,
+                reputationPlus: 37,
+                reputationMinus: 1,
+                amountUSD: 20000,
                 bitcoin: 5.45003,
-                status: 'PAID'
+                paymentMethod: 'Mastercard',
+                paymentStatus: 'PAID',
             }
         ];
+
+        const trade = trades[1];
 
         return (
             <Container fluid={"md"} className={"dashboard-container"}>
@@ -55,7 +65,7 @@ class Dashboard extends React.Component
                         {trades.map(trade => <Trade item={trade} key={trade.id} />)}
                     </Col>
                     <Col md={6} className={"dashboard-section"}>
-                        <SectionHeader />
+                        <SectionHeader trade={trade} />
                     </Col>
                     <Col md={3} className={"dashboard-aside-trades"}>
                         Right side
