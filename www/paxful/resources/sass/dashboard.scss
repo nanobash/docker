@@ -4,6 +4,16 @@ body {
     background-color: $body-bg;
 }
 
+/* Dashboard container styling begin
+ *********************************************/
+
+.dashboard-container {
+
+}
+
+/* -------------------------------------------
+ *********************************************/
+
 /* Dashboard header styling begin
  *********************************************/
 .dashboard-header {
@@ -55,6 +65,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: white;
+    min-height: calc(100vh - 7.2rem);
 }
 
 /* -------------------------------------------
@@ -64,9 +75,8 @@ body {
  *********************************************/
 .dashboard-trade-item {
     position: relative;
-    border-left: 0.1rem solid $dashboard-border-color;
-    border-right: 0.1rem solid $dashboard-border-color;
     border-bottom: 0.1rem solid $dashboard-border-color;
+    box-shadow: 0.5rem 0 0.5rem 0 $dashboard-border-color;
 }
 
 .dashboard-trade-item-username {

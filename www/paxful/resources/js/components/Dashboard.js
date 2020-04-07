@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../sass/dashboard.scss';
 import Header from './Header';
 import Menu from './Menu';
-import TradesArticle from "./TradesArticle";
+import Trade from "./Trade";
 
 class Dashboard extends React.Component
 {
@@ -50,7 +50,9 @@ class Dashboard extends React.Component
                 <Header />
                 <Menu />
                 <Row>
-                    <TradesArticle trades={trades} />
+                    <Col md={3} className={"dashboard-trades-article"}>
+                        {trades.map(trade => <Trade item={trade} key={trade.id} />)}
+                    </Col>
                     <Col sm={6}>Middle side</Col>
                     <Col sm={3}>Right side</Col>
                 </Row>
