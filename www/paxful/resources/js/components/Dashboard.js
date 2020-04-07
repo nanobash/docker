@@ -46,15 +46,19 @@ class Dashboard extends React.Component
         ];
 
         return (
-            <Container fluid={"sm"} className={"dashboard-container"}>
+            <Container fluid={"md"} className={"dashboard-container"}>
                 <Header />
                 <Menu />
                 <Row>
-                    <Col md={3} className={"dashboard-trades-article"}>
+                    <Col sm={3} className={"dashboard-article-trades"}>
                         {trades.map(trade => <Trade item={trade} key={trade.id} />)}
                     </Col>
-                    <Col sm={6}>Middle side</Col>
-                    <Col sm={3}>Right side</Col>
+                    <Col sm={6} className={"dashboard-section"}>
+                        Middle side
+                    </Col>
+                    <Col sm={3} className={"dashboard-aside-trade-details"}>
+                        Right side
+                    </Col>
                 </Row>
             </Container>
         );

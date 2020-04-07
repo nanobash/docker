@@ -1,13 +1,19 @@
 @import 'variables';
 
+/* Dashboard container and general styling begin
+ *********************************************/
+
 body {
     background-color: $body-bg;
 }
 
-/* Dashboard container styling begin
- *********************************************/
 .dashboard-container {
 
+}
+
+.dashboard-article-trades, .dashboard-section, .dashboard-aside-trade-details {
+    background-color: white;
+    min-height: calc(100vh - 7rem);
 }
 
 /* -------------------------------------------
@@ -64,24 +70,18 @@ body {
 /* -------------------------------------------
  *********************************************/
 
-/* Dashboard trades article begin
- *********************************************/
-.dashboard-trades-article {
-    margin: 0;
-    padding: 0;
-    background-color: white;
-    min-height: calc(100vh - 7.2rem);
-}
-
-/* -------------------------------------------
- *********************************************/
-
 /* Dashboard trade item styling begin
  *********************************************/
 .dashboard-trade-item {
     position: relative;
     border-bottom: 0.1rem solid $dashboard-border-color;
     box-shadow: 0.5rem 0 0.5rem 0 $dashboard-border-color;
+}
+
+.dashboard-aside-trade-details {
+    position: relative;
+    border-bottom: 0.1rem solid $dashboard-border-color;
+    box-shadow: -0.5rem 0 0.5rem 0 $dashboard-border-color;
 }
 
 .dashboard-trade-item-username {
@@ -140,28 +140,42 @@ body {
 }
 
 .not-paid {
-    color: gray;
+    color: red;
 }
 
 /*
+ *********************************************/
+
+/* Dashboard section styling begin
+ *********************************************/
+
+
+/* -------------------------------------------
  *********************************************/
 
 @media screen and (max-width: 575px) {
     .dashboard-menu a:first-child {
         border-left: 0;
     }
+
+    .dashboard-trade-item {
+        box-shadow: 0 0;
+    }
 }
 
-@media screen and (min-width: 768px) and (max-width: 991px) {
+@media screen and (min-width: 576px) and (max-width: 1199px) {
     .dashboard-trade-item-user {
-        position: absolute;
-        top: 4.2rem;
-        right: 0;
+        display: none;
     }
 
-    .dashboard-trade-item-user svg {
-        position: relative;
-        top: 0.9rem;
-        right: 4rem;
+    .dashboard-trade-item-username, .dashboard-trade-item-amount {
+        font-size: 0.65rem;
+    }
+
+    .dashboard-trade-item-payment-method {
+        font-size: 0.8rem;
     }
 }
+
+/* -------------------------------------------
+ *********************************************/
