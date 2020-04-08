@@ -10,6 +10,7 @@ import SectionHeader from './Section/SectionHeader';
 import SectionContent from './Section/SectionContent';
 import SectionTextarea from './Section/SectionTextarea';
 import Logo from "./Header/Logo";
+import AsideTrade from "./AsideTrade";
 
 class Dashboard extends React.Component
 {
@@ -167,7 +168,7 @@ class Dashboard extends React.Component
                     </Col>
 
                     <Col md={3} className={"dashboard-aside-trades"}>
-                        Right side
+                        <AsideTrade trade={trade}/>
                     </Col>
                 </Row>
             </Container>

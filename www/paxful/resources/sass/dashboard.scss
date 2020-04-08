@@ -20,6 +20,17 @@ body {
     min-height: calc(100vh - 7rem);
 }
 
+.paid-status {
+    color: green;
+}
+
+.not-paid-status {
+    color: red;
+}
+
+.dashboard-silver-color {
+    color: $username-amount-color;
+}
 /* -------------------------------------------
  *********************************************/
 
@@ -293,6 +304,59 @@ body {
 .dashboard-aside-trades {
     box-shadow: -0.5rem 0 0.5rem 0 $dashboard-border-color;
     z-index: 2;
+}
+
+.aside-trade-title {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    color: #60656F;
+}
+
+.aside-trade-title span {
+    color: $dashboard-primary-color;
+}
+
+.aside-trade-title p {
+    font-size: 0.9rem;
+    color: $username-amount-color;
+}
+
+.aside-trade-button {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.aside-trade-details {
+    margin-top: 2.5rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 5rem 5rem 5rem;
+}
+
+.aside-trade-details div {
+    position: relative;
+    top: 1.1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.aside-trade-details > div {
+    border-bottom: 0.1rem solid #E9EAEA;
+}
+
+.aside-trade-details > div:nth-child(odd) {
+    border-right: 0.1rem solid #E9EAEA;
+}
+
+.aside-trade-details-user span:first-child {
+    color: green;
+}
+
+.aside-trade-details-user span:last-child {
+    color: red;
 }
 
 /* -------------------------------------------
