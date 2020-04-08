@@ -8,6 +8,7 @@ import Menu from './Menu';
 import Trade from './Trade';
 import SectionHeader from './SectionHeader';
 import SectionContent from './SectionContent';
+import SectionTextarea from './SectionTextarea';
 
 class Dashboard extends React.Component
 {
@@ -29,8 +30,14 @@ class Dashboard extends React.Component
             },
             {
                 reply: true,
-                comment: 'Ut vitae ipsum erat. Donec semper leo ut tortor lobortis, vestibulum sagittis felis iaculis.' +
-                    'Cras vehicula dignissim nibh, eu vulputate odio ornare sed.',
+                comment: 'Praesent aliquam ac dui eget tristique. Nam vel lorem a justo semper faucibus. Quisque et leo' +
+                    'in diam convallis aliquet at id sapien. Fusce egestas accumsan est venenatis pretium. In non ' +
+                    'efficitur tellus. Nam ac neque accumsan, vestibulum leo et, blandit sapien. Pellentesque at lorem ' +
+                    'eleifend, hendrerit justo id, ultricies nunc. Sed orci dolor, molestie quis pharetra ut, feugiat ' +
+                    'nec tortor. Etiam at cursus tellus, ac congue nisl. Integer scelerisque in orci molestie faucibus.' +
+                    'Donec eros est, laoreet vel ligula non, fermentum dapibus ipsum. Donec aliquet mollis lacus,' +
+                    'commodo rutrum leo porta sed. Aliquam et enim in lorem laoreet vulputate. Quisque iaculis finibus ' +
+                    'porttitor.',
                 time: '12:00 pm'
             }
         ];
@@ -92,7 +99,14 @@ class Dashboard extends React.Component
                     </Col>
                     <Col md={6} className={"dashboard-section"}>
                         <SectionHeader trade={trade} />
-                        {this.sectionContentComments().map((v, i) => <SectionContent comment={v} key={i}/>)}
+
+                        <div className={"section-content"}>
+                            {this.sectionContentComments().map(
+                                (v, i) => <SectionContent comment={v} key={i}/>
+                            )}
+                        </div>
+
+                        <SectionTextarea />
                     </Col>
                     <Col md={3} className={"dashboard-aside-trades"}>
                         Right side

@@ -7,7 +7,7 @@ export default class SectionContent extends React.Component
         const {comment} = this.props;
 
         return (
-            <div className={"section-content"}>
+            <div className={"section-comment"}>
                 <div className={comment.reply ? '' : 'hide'}>
                     <FaUserAlt />
                 </div>

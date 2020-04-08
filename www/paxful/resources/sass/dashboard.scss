@@ -204,25 +204,30 @@ body {
 }
 
 .section-content {
+    height: 40rem;
+    overflow: auto;
+}
+
+.section-comment {
     margin-bottom: 2rem;
     display: inline-flex;
     align-items: center;
 }
 
-.section-content div {
+.section-comment div {
     text-align: justify;
 }
 
-.section-content div:nth-child(even) {
+.section-comment div:nth-child(even) {
     width: calc(100% - 4rem);
 }
 
-.section-content div:nth-child(2) {
+.section-comment div:nth-child(2) {
     border-radius: 0.2rem;
     padding: 0.5rem;
 }
 
-.section-content div:nth-child(odd) {
+.section-comment div:nth-child(odd) {
     width: 4rem;
     text-align: center;
 }
@@ -235,6 +240,30 @@ body {
 .section-content-comment-reply {
     background-color: white;
     color: #4A5F82;
+}
+
+.section-textarea {
+    position: relative;
+    margin-top: 1.8rem;
+}
+
+.section-textarea textarea {
+    resize: none;
+    font-size: 0.85rem;
+    padding-right: 4rem;
+}
+
+.section-textarea span {
+    position: absolute;
+    top: 2.2rem;
+    right: 1.7rem;
+    color: green;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.section-textarea span:hover {
+    cursor: pointer;
 }
 
 /* -------------------------------------------
