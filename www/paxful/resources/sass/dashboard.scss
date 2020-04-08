@@ -235,11 +235,29 @@ body {
 .section-content-comment-not-reply {
     background-color: #4A5F82;
     color: white;
+    position: relative;
 }
 
 .section-content-comment-reply {
+    position: relative;
     background-color: white;
     color: #4A5F82;
+}
+
+.section-content-comment-not-reply div, .section-content-comment-reply div {
+    position: absolute;
+    bottom: -1.2rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: $username-amount-color;
+}
+
+.section-content-comment-not-reply div {
+    right: 0;
+}
+
+.section-content-comment-reply div {
+    left: 0;
 }
 
 .section-textarea {

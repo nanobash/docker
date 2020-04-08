@@ -39,6 +39,37 @@ class Dashboard extends React.Component
                     'commodo rutrum leo porta sed. Aliquam et enim in lorem laoreet vulputate. Quisque iaculis finibus ' +
                     'porttitor.',
                 time: '12:00 pm'
+            },
+            {
+                reply: false,
+                comment: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.' +
+                    'Nunc gravida dapibus ante vel mollis. Sed quis ante eget libero volutpat luctus sit amet id tellus.' +
+                    'Praesent fermentum volutpat hendrerit. Nunc varius dolor velit, in ullamcorper ante pharetra vel.' +
+                    'Morbi scelerisque imperdiet ligula, sit amet sollicitudin magna dignissim non. Proin turpis erat,' +
+                    'porttitor eu viverra vel, maximus non eros. Sed finibus velit fringilla ex rutrum, in tempor' +
+                    'elit accumsan.',
+                time: '11:45 am'
+            },
+            {
+                reply: true,
+                comment: 'Pellentesque vitae gravida lacus. Nulla felis lacus, molestie at sapien maximus,' +
+                    'iaculis porta est. Sed ac ipsum sagittis, commodo mi at, tempor augue.',
+                time: '11:30 am'
+            },
+            {
+                reply: true,
+                comment: 'Duis sagittis turpis at tortor malesuada vehicula.',
+                time: '11:00 am'
+            },
+            {
+                reply: false,
+                comment: 'Sed quis neque bibendum, scelerisque enim ut, sagittis lacus.',
+                time: '10:55 am'
+            },
+            {
+                reply: true,
+                comment: 'Praesent mollis hendrerit commodo.',
+                time: '10:40 am'
             }
         ];
     }
@@ -51,7 +82,7 @@ class Dashboard extends React.Component
                 reputationPlus: 37,
                 reputationMinus: 1,
                 amountUSD: 12000,
-                bitcoin: 2.26,
+                bitcoin: 2.26000312,
                 paymentMethod: 'PayPal',
                 paymentStatus: 'PAID',
             },
@@ -61,7 +92,7 @@ class Dashboard extends React.Component
                 reputationPlus: 37,
                 reputationMinus: 1,
                 amountUSD: 5100,
-                bitcoin: 1.2,
+                bitcoin: 1.12000002,
                 paymentMethod: 'Amazon Gift Card',
                 paymentStatus: 'NOT PAID',
             },
@@ -71,7 +102,7 @@ class Dashboard extends React.Component
                 reputationPlus: 37,
                 reputationMinus: 1,
                 amountUSD: 20,
-                bitcoin: 0.00003,
+                bitcoin: 0.00000312,
                 paymentMethod: 'iTunes Gift Card',
                 paymentStatus: 'PAID',
             },
@@ -81,7 +112,17 @@ class Dashboard extends React.Component
                 reputationPlus: 37,
                 reputationMinus: 1,
                 amountUSD: 20000,
-                bitcoin: 5.45003,
+                bitcoin: 5.30003011,
+                paymentMethod: 'Mastercard',
+                paymentStatus: 'PAID',
+            },
+            {
+                id: 17,
+                username: 'Dummy Doe',
+                reputationPlus: 37,
+                reputationMinus: 1,
+                amountUSD: 201,
+                bitcoin: 0.26000401,
                 paymentMethod: 'Mastercard',
                 paymentStatus: 'PAID',
             }

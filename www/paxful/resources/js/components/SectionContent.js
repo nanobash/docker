@@ -14,6 +14,8 @@ export default class SectionContent extends React.Component
 
                 <div className={comment.reply ? 'section-content-comment-reply' : 'section-content-comment-not-reply'}>
                     {comment.comment}
+
+                    <div>{comment.time}</div>
                 </div>
 
                 <div className={comment.reply ? 'hide' : ''}>
