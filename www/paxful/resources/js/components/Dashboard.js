@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import {Container, Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../sass/dashboard.scss';
-import Header from './Header';
-import Menu from './Menu';
+import HeaderNavigation from './Header/HeaderNavigation';
+import Menu from './Header/Menu';
 import Trade from './Trade';
-import SectionHeader from './SectionHeader';
-import SectionContent from './SectionContent';
-import SectionTextarea from './SectionTextarea';
+import SectionHeader from './Section/SectionHeader';
+import SectionContent from './Section/SectionContent';
+import SectionTextarea from './Section/SectionTextarea';
+import Logo from "./Header/Logo";
 
 class Dashboard extends React.Component
 {
@@ -132,12 +133,27 @@ class Dashboard extends React.Component
 
         return (
             <Container fluid={"md"} className={"dashboard-container"}>
-                <Header />
-                <Menu />
+                <Row className={"dashboard-header"}>
+                    <Col md={2}>
+                        <Logo />
+                    </Col>
+
+                    <Col md={10}>
+                        <HeaderNavigation />
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col md={12} className={"dashboard-menu"}>
+                        <Menu />
+                    </Col>
+                </Row>
+
                 <Row>
                     <Col md={3} className={"dashboard-article-trades"}>
                         {trades.map(trade => <Trade item={trade} key={trade.id} />)}
                     </Col>
+
                     <Col md={6} className={"dashboard-section"}>
                         <SectionHeader trade={trade} />
 
@@ -149,6 +165,7 @@ class Dashboard extends React.Component
 
                         <SectionTextarea />
                     </Col>
+
                     <Col md={3} className={"dashboard-aside-trades"}>
                         Right side
                     </Col>
