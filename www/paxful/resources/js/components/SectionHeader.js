@@ -10,7 +10,7 @@ export default class SectionHeader extends React.Component
         return (
             <div className={"section-header"}>
                 <div className={"section-header-delete-icon"}>
-                    <IconContext.Provider value={{ color: "white", size: "2.3rem" }}>
+                    <IconContext.Provider value={{ color: "white", size: "1.5rem" }}>
                         <MdDelete />
                     </IconContext.Provider>
                 </div>
