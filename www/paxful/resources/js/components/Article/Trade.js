@@ -15,7 +15,7 @@ export default class Trade extends React.Component
         return (
             <div className={"article-trade-item"}>
                 <div className={"article-trade-item-title"}>
-                    <IconContext.Provider value={{ color: "green" }}>
+                    <IconContext.Provider value={{color: item.paymentStatus === 'PAID' ? "green" : "gray"}}>
                         <GoPrimitiveDot />
                     </IconContext.Provider>
 
