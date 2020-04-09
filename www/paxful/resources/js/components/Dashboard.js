@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import {Container, Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../sass/dashboard.scss';
-import HeaderNavigation from './Header/HeaderNavigation';
+import Navigation from './Header/Navigation';
 import Menu from './Header/Menu';
-import ArticleTrade from './ArticleTrade';
-import SectionHeader from './Section/SectionHeader';
-import SectionContent from './Section/SectionContent';
-import SectionTextarea from './Section/SectionTextarea';
+import Trade from './Article/Trade';
+import Header from './Section/Header';
+import Content from './Section/Content';
+import Textarea from './Section/Textarea';
 import Logo from "./Header/Logo";
-import AsideTrade from "./AsideTrade";
+import TradeDetails from "./Aside/TradeDetails";
 
 class Dashboard extends React.Component
 {
@@ -140,7 +140,7 @@ class Dashboard extends React.Component
                     </Col>
 
                     <Col md={10}>
-                        <HeaderNavigation />
+                        <Navigation />
                     </Col>
                 </Row>
 
@@ -152,23 +152,23 @@ class Dashboard extends React.Component
 
                 <Row>
                     <Col md={3} className={"dashboard-article"}>
-                        {trades.map(trade => <ArticleTrade item={trade} key={trade.id} />)}
+                        {trades.map(trade => <Trade item={trade} key={trade.id} />)}
                     </Col>
 
                     <Col md={6} className={"dashboard-section"}>
-                        <SectionHeader trade={trade} />
+                        <Header trade={trade} />
 
                         <div className={"section-content"}>
                             {this.sectionContentComments().map(
-                                (v, i) => <SectionContent comment={v} key={i}/>
+                                (v, i) => <Content comment={v} key={i}/>
                             )}
                         </div>
 
-                        <SectionTextarea />
+                        <Textarea />
                     </Col>
 
                     <Col md={3} className={"dashboard-aside"}>
-                        <AsideTrade trade={trade}/>
+                        <TradeDetails trade={trade}/>
                     </Col>
                 </Row>
             </Container>

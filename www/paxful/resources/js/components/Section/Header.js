@@ -2,7 +2,7 @@ import React from 'react';
 import {MdDelete} from 'react-icons/md';
 import {IconContext} from 'react-icons';
 
-export default class SectionHeader extends React.Component
+export default class Header extends React.Component
 {
     render() {
         const {trade} = this.props;

@@ -7,7 +7,7 @@ import {FaUserSecret} from 'react-icons/fa';
 import {IoMdCheckmarkCircle} from 'react-icons/io';
 import {MdCancel} from 'react-icons/md';
 
-export default class ArticleTrade extends React.Component
+export default class Trade extends React.Component
 {
     render() {
         const {item} = this.props;

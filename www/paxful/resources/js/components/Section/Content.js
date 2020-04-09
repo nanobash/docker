@@ -1,7 +1,7 @@
 import React from 'react';
 import {FaUserAlt, FaUserSecret} from 'react-icons/fa';
 
-export default class SectionContent extends React.Component
+export default class Content extends React.Component
 {
     render() {
         const {comment} = this.props;
