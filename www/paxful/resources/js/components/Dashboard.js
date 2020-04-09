@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../sass/dashboard.scss';
 import HeaderNavigation from './Header/HeaderNavigation';
 import Menu from './Header/Menu';
-import Trade from './Trade';
+import ArticleTrade from './ArticleTrade';
 import SectionHeader from './Section/SectionHeader';
 import SectionContent from './Section/SectionContent';
 import SectionTextarea from './Section/SectionTextarea';
@@ -15,7 +15,7 @@ import AsideTrade from "./AsideTrade";
 class Dashboard extends React.Component
 {
     sectionContentComments() {
-        // Faking comments, that actually should come from elsewhere, like from database for example
+        // Faking comments, that actually should come from database for example
         return [
             {
                 reply: false,
@@ -133,7 +133,7 @@ class Dashboard extends React.Component
         const trade = trades[1];
 
         return (
-            <Container fluid={"md"} className={"dashboard-container"}>
+            <Container fluid={"md"}>
                 <Row className={"dashboard-header"}>
                     <Col md={2}>
                         <Logo />
@@ -151,8 +151,8 @@ class Dashboard extends React.Component
                 </Row>
 
                 <Row>
-                    <Col md={3} className={"dashboard-article-trades"}>
-                        {trades.map(trade => <Trade item={trade} key={trade.id} />)}
+                    <Col md={3} className={"dashboard-article"}>
+                        {trades.map(trade => <ArticleTrade item={trade} key={trade.id} />)}
                     </Col>
 
                     <Col md={6} className={"dashboard-section"}>
@@ -167,7 +167,7 @@ class Dashboard extends React.Component
                         <SectionTextarea />
                     </Col>
 
-                    <Col md={3} className={"dashboard-aside-trades"}>
+                    <Col md={3} className={"dashboard-aside"}>
                         <AsideTrade trade={trade}/>
                     </Col>
                 </Row>

@@ -1,43 +1,38 @@
 @import 'variables';
 
-/* Dashboard container and general styling begin
+/* Dashboard container and general styling
  *********************************************/
-
 body {
-    background-color: $body-bg;
+    background-color: $dashboard-body-bg;
 }
 
-.dashboard-container {
+.dashboard-article, .dashboard-section, .dashboard-aside {
+    background-color: white;
+    min-height: calc(100vh - 7rem);
+}
 
+.dashboard-title-light {
+    color: $dashboard-title-light;
 }
 
 .hide {
     display: none !important;
 }
 
-.dashboard-article-trades, .dashboard-section, .dashboard-aside-trades {
-    background-color: white;
-    min-height: calc(100vh - 7rem);
-}
-
-.paid-status {
+.green {
     color: green;
 }
 
-.not-paid-status {
+.red {
     color: red;
-}
-
-.dashboard-silver-color {
-    color: $username-amount-color;
 }
 /* -------------------------------------------
  *********************************************/
 
-/* Dashboard header styling begin
+/* Dashboard header styling
  *********************************************/
 .dashboard-header {
-    background-color: $dashboard-primary-color;
+    background-color: $dashboard-header-bg;
 }
 
 .dashboard-header-nav {
@@ -48,118 +43,97 @@ body {
     color: white;
 }
 
+.dashboard-header-nav a:hover {
+    text-decoration: underline;
+}
+/* -------------------------------------------
+ *********************************************/
+
+/* Dashboard menu styling
+ *********************************************/
+.dashboard-menu {
+    background-color: white;
+    border-bottom: 0.2rem solid $dashboard-body-bg;
+}
+
 .dashboard-menu a {
     width: 8rem;
     font-size: 0.8rem;
     text-align: center;
 }
 
-.dashboard-header-nav a:hover {
-    text-decoration: underline;
-}
-
-/* -------------------------------------------
- *********************************************/
-
-/* Dashboard menu styling begin
- *********************************************/
-.dashboard-menu {
-    background-color: white;
-    border-bottom: 0.2rem solid $dashboard-border-color;
-}
-
 .dashboard-menu a {
-    color: $dashboard-primary-color;
+    color: $dashboard-header-bg;
     font-weight: bold;
-    border-right: 1px solid $dashboard-border-color;
+    border-right: 1px solid $dashboard-body-bg;
 }
 
 .dashboard-menu a:first-child {
-    border-left: 1px solid $dashboard-border-color;
+    border-left: 1px solid $dashboard-body-bg;
 }
 
 .dashboard-menu a:hover {
-    background-color: #F2F7FA;
+    background-color: $dashboard-section-bg;
 }
-
 /* -------------------------------------------
  *********************************************/
 
-/* Dashboard article trades & it's item styling begin
+/* Dashboard article trades styling
  *********************************************/
-.dashboard-article-trades {
-    box-shadow: 0.5rem 0 0.5rem 0 $dashboard-border-color;
+.dashboard-article {
+    box-shadow: 0.5rem 0 0.5rem 0 $dashboard-body-bg;
     z-index: 2;
 }
 
-.dashboard-trade-item {
+.article-trade-item {
     position: relative;
-    border-bottom: 0.1rem solid $dashboard-border-color;
+    border-bottom: 0.1rem solid $dashboard-body-bg;
 }
 
-.dashboard-trade-item-username {
+.article-trade-item-title {
     margin-left: 1.2rem;
     padding-top: 1.2rem;
     font-size: 0.8rem;
-    color: $username-amount-color;
+    color: $dashboard-title-light;
     font-weight: bold;
 }
 
-.dashboard-trade-item-payment-method {
+.article-trade-item-payment-method {
     margin-top: 0.3rem;
     margin-left: 2.1rem;
     font-size: 1rem;
-    color: $dashboard-primary-color;
+    color: $dashboard-header-bg;
     font-weight: bold;
 }
 
-.dashboard-trade-item-amount {
+.article-trade-item-amount {
     margin-left: 2.1rem;
     margin-bottom: 1.2rem;
     font-size: 0.8rem;
     font-weight: bold;
-    color: $username-amount-color;
+    color: $dashboard-title-light;
 }
 
-/* -------------------------------------------
- *********************************************/
-
-/* Dashboard trade item user styling
- *********************************************/
-.dashboard-trade-item-user-icon {
+.article-trade-item-user {
     position: absolute;
     top: 1.6rem;
     right: 0.5rem;
 }
 
-.dashboard-trade-item-user-icon svg {
+.article-trade-item-user svg:first-child {
     position: absolute;
     right: 0;
 }
 
-.paid, .not-paid {
+.article-trade-item-user svg:last-child {
     position: absolute;
+    right: 0;
     top: 2.8rem;
-    width: 4rem;
-    font-size: 0.65rem;
-    font-weight: bold;
-    text-align: center;
 }
-
-.paid {
-    color: green;
-    right: -1.2rem;
-}
-
-.not-paid {
-    color: red;
-    right: -0.5rem;
-}
-
 /*
  *********************************************/
 
-/* Dashboard section styling begin
+/* Dashboard section styling
  *********************************************/
 .dashboard-section {
     background-color: $dashboard-section-bg;
@@ -169,7 +143,7 @@ body {
 .section-header {
     margin-bottom: 2rem;
     position: relative;
-    border-bottom: 0.1rem solid $dashboard-border-color;
+    border-bottom: 0.1rem solid $dashboard-body-bg;
 }
 
 .section-header-delete-icon {
@@ -179,7 +153,7 @@ body {
     border-radius: 50%;
     width: 1.9rem;
     height: 1.9rem;
-    background-color: #A5B0BA;
+    background-color: $dashboard-header-bg;
 }
 
 .section-header-delete-icon:hover {
@@ -196,22 +170,14 @@ body {
     margin-top: 1.5rem;
     text-align: center;
     font-weight: bold;
-    color: $dashboard-primary-color;
+    color: $dashboard-header-bg;
 }
 
 .section-header-username {
     margin-bottom: 1.5rem;
     text-align: center;
     font-weight: bold;
-    color: $username-amount-color;
-}
-
-.reputation-plus {
-    color: green;
-}
-
-.reputation-minus {
-    color: red;
+    color: $dashboard-title-light;
 }
 
 .section-content {
@@ -244,7 +210,7 @@ body {
 }
 
 .section-content-comment-not-reply {
-    background-color: #4A5F82;
+    background-color: $dashboard-header-bg;
     color: white;
     position: relative;
 }
@@ -260,7 +226,7 @@ body {
     bottom: -1.2rem;
     font-size: 0.8rem;
     font-weight: bold;
-    color: $username-amount-color;
+    color: $dashboard-title-light;
 }
 
 .section-content-comment-not-reply div {
@@ -283,6 +249,11 @@ body {
     height: 5rem;
 }
 
+.section-textarea textarea::placeholder {
+    color: $dashboard-header-bg;
+    font-weight: bold;
+}
+
 .section-textarea span {
     position: absolute;
     top: 1.9rem;
@@ -295,14 +266,13 @@ body {
 .section-textarea span:hover {
     cursor: pointer;
 }
-
 /* -------------------------------------------
  *********************************************/
 
-/* Dashboard aside trades styling begin
+/* Dashboard aside trade details styling
  *********************************************/
-.dashboard-aside-trades {
-    box-shadow: -0.5rem 0 0.5rem 0 $dashboard-border-color;
+.dashboard-aside {
+    box-shadow: -0.5rem 0 0.5rem 0 $dashboard-body-bg;
     z-index: 2;
 }
 
@@ -314,12 +284,12 @@ body {
 }
 
 .aside-trade-title span {
-    color: $dashboard-primary-color;
+    color: $dashboard-header-bg;
 }
 
 .aside-trade-title p {
     font-size: 0.9rem;
-    color: $username-amount-color;
+    color: $dashboard-title-light;
 }
 
 .aside-trade-button {
@@ -358,33 +328,33 @@ body {
 .aside-trade-details-user span:last-child {
     color: red;
 }
-
 /* -------------------------------------------
  *********************************************/
 
+/* Media Queries
+ *********************************************/
 @media screen and (max-width: 767px) {
     .dashboard-menu a:first-child {
         border-left: 0;
     }
 
-    .dashboard-article-trades {
+    .dashboard-article {
         box-shadow: 0 0;
     }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
-    .dashboard-trade-item-user-icon {
+    .article-trade-item-user {
         display: none;
     }
 
-    .dashboard-trade-item-username, .dashboard-trade-item-amount {
+    .article-trade-item-title, .article-trade-item-amount {
         font-size: 0.65rem;
     }
 
-    .dashboard-trade-item-payment-method {
+    .article-trade-item-payment-method {
         font-size: 0.8rem;
     }
 }
-
 /* -------------------------------------------
  *********************************************/

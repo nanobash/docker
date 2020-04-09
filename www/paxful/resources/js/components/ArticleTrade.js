@@ -4,15 +4,17 @@ import {GoPrimitiveDot} from 'react-icons/go';
 import {FaBitcoin} from 'react-icons/fa';
 import {IoLogoUsd} from 'react-icons/io';
 import {FaUserSecret} from 'react-icons/fa';
+import {IoMdCheckmarkCircle} from 'react-icons/io';
+import {MdCancel} from 'react-icons/md';
 
-export default class Trade extends React.Component
+export default class ArticleTrade extends React.Component
 {
     render() {
         const {item} = this.props;
 
         return (
-            <div className={"dashboard-trade-item"}>
-                <div className={"dashboard-trade-item-username"}>
+            <div className={"article-trade-item"}>
+                <div className={"article-trade-item-title"}>
                     <IconContext.Provider value={{ color: "green" }}>
                         <GoPrimitiveDot />
                     </IconContext.Provider>
@@ -20,11 +22,11 @@ export default class Trade extends React.Component
                     {item.username} is buying
                 </div>
 
-                <div className={"dashboard-trade-item-payment-method"}>
+                <div className={"article-trade-item-payment-method"}>
                     {item.paymentMethod}
                 </div>
 
-                <div className={"dashboard-trade-item-amount"}>
+                <div className={"article-trade-item-amount"}>
                     {item.amountUSD}
                     <IconContext.Provider value={{ color: "green", size: "0.9rem" }}>
                         <IoLogoUsd />
@@ -37,9 +39,20 @@ export default class Trade extends React.Component
                     </IconContext.Provider>
                 </div>
 
-                <div className={"dashboard-trade-item-user-icon"}>
+                <div className={"article-trade-item-user"}>
                     <FaUserSecret />
-                    <span className={item.paymentStatus === 'PAID' ? 'paid' : 'not-paid'}>{item.paymentStatus}</span>
+
+                    {item.paymentStatus === 'PAID' &&
+                        <IconContext.Provider value={{color: "green"}}>
+                            <IoMdCheckmarkCircle />
+                        </IconContext.Provider>
+                    }
+
+                    {item.paymentStatus === 'NOT PAID' &&
+                        <IconContext.Provider value={{color: "red"}}>
+                            <MdCancel />
+                        </IconContext.Provider>
+                    }
                 </div>
             </div>
         );

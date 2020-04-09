@@ -9,7 +9,7 @@ export default class SectionTextarea extends React.Component
                 <span>Send</span>
 
                 <Form.Group controlId="section_comment">
-                    <Form.Control as="textarea" rows="3" />
+                    <Form.Control as="textarea" rows="3" placeholder={"Type your message..."} />
                 </Form.Group>
             </div>
         );

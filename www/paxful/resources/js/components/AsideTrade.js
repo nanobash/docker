@@ -34,7 +34,7 @@ export default class AsideTrade extends React.Component
                         <div className={"aside-trade-details-number-of-trades"}>
                             # OF TRADES
 
-                            <p>{4}</p>
+                            <p className={"dashboard-title-light"}>{4}</p>
                         </div>
                     </div>
 
@@ -42,7 +42,7 @@ export default class AsideTrade extends React.Component
                         <div>
                             TRADE STATUS
 
-                            <p className={trade.paymentStatus === 'PAID' ? 'paid-status' : 'not-paid-status'}>
+                            <p className={trade.paymentStatus === 'PAID' ? 'green' : 'red'}>
                                 {trade.paymentStatus}
                             </p>
                         </div>
@@ -52,7 +52,7 @@ export default class AsideTrade extends React.Component
                         <div>
                             TRADE HASH
 
-                            <p className={"dashboard-silver-color"}>
+                            <p className={"dashboard-title-light"}>
                                 45aFD3Rr
                             </p>
                         </div>
@@ -62,7 +62,7 @@ export default class AsideTrade extends React.Component
                         <div>
                             AMOUNT USD
 
-                            <p className={"dashboard-silver-color"}>{trade.amountUSD}</p>
+                            <p className={"dashboard-title-light"}>{trade.amountUSD}</p>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@ export default class AsideTrade extends React.Component
                         <div>
                             AMOUNT BTC
 
-                            <p className={"dashboard-silver-color"}>{trade.bitcoin}</p>
+                            <p className={"dashboard-title-light"}>{trade.bitcoin}</p>
                         </div>
                     </div>
                 </div>

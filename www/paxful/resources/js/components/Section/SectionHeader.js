@@ -22,9 +22,9 @@ export default class SectionHeader extends React.Component
                 <div className={"section-header-username"}>
                     {trade.username}
                     {' '}
-                    <span className={"reputation-plus"}>+{trade.reputationPlus}</span>
+                    <span className={"green"}>+{trade.reputationPlus}</span>
                     {' / '}
-                    <span className={"reputation-minus"}>-{trade.reputationMinus}</span>
+                    <span className={"red"}>-{trade.reputationMinus}</span>
                 </div>
             </div>
         );
