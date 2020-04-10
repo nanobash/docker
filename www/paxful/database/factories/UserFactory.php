@@ -19,8 +19,8 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'username' => 'Nakamoto',
-        'email' => 'satoshi.nakamoto@example.com',
+        'username' => $faker->unique()->userName,
+        'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'reputation_plus' => $faker->numberBetween(0, 100),
         'reputation_minus' => -$faker->numberBetween(0, 10),
