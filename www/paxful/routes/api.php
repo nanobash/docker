@@ -15,3 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/user', 'API\UserController@index');
 Route::get('/user/{user}', 'API\UserController@show');
+
+Route::get('/trade', 'API\TradeController@index');
+Route::get('/trade/{trade}', 'API\TradeController@show');
+Route::post('/trade', 'API\TradeController@store');
