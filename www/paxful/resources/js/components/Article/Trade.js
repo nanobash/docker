@@ -28,13 +28,13 @@ export default class Trade extends React.Component
 
                 <div className={"article-trade-item-amount"}>
                     {item.amountUSD}
-                    <IconContext.Provider value={{ color: "green", size: "0.9rem" }}>
+                    <IconContext.Provider value={{ color: "green", size: "1.2em" }}>
                         <IoLogoUsd />
                     </IconContext.Provider>
                     {' '}
                     {item.bitcoin}
                     {' '}
-                    <IconContext.Provider value={{ color: "orange", size: "1rem"}}>
+                    <IconContext.Provider value={{ color: "orange", size: "1.2em"}}>
                         <FaBitcoin />
                     </IconContext.Provider>
                 </div>
