@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
@@ -11,7 +13,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -23,7 +25,7 @@ class UserController extends Controller
      *
      * @param User $user
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(User $user)
     {

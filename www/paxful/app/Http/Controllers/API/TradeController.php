@@ -7,19 +7,26 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Trade;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use Validator;
 
 class TradeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Returns last 30 trade records.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        return response(Trade::all(), Response::HTTP_OK);
+        return response(
+            Trade::orderBy('id', 'DESC')
+                ->with('user')
+                ->limit(30)
+                ->get(),
+            Response::HTTP_OK
+        );
     }
 
     /**
@@ -37,8 +44,11 @@ class TradeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     *
+     * @return Response
+     *
+     * @throws ValidationException
      */
     public function store(Request $request)
     {
