@@ -42,6 +42,7 @@ class TradeController extends Controller
      */
     public function store(Request $request)
     {
+        // user_id and currency are statically written in TradeController as they can be hardcoded according to task
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|integer',
             'payment_method' => 'required|string|max:255',
