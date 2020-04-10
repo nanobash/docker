@@ -7,7 +7,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Trade;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use Validator;
 
@@ -16,17 +15,24 @@ class TradeController extends Controller
     /**
      * Returns last 30 trade records.
      *
+     * Eager loading trades with user because in real world example, each trade should have different user, therefore
+     *      the user data should differ from each other.
+     *
+     * IMPORTANT: Only loading count alongside with the trades in such way, because according to the assignment
+     *      we assume that all the trades belong to only one user.
+     *
      * @return Response
      */
     public function index()
     {
-        return response(
-            Trade::orderBy('id', 'DESC')
-                ->with('user')
-                ->limit(30)
-                ->get(),
-            Response::HTTP_OK
-        );
+        $trades = Trade::orderBy('id', 'DESC')
+            ->with('user')
+            ->limit(30)
+            ->get();
+
+        $count = $trades->count();
+
+        return response(['count' => $count, 'result' => $trades], Response::HTTP_OK);
     }
 
     /**
@@ -34,7 +40,7 @@ class TradeController extends Controller
      *
      * @param Trade $trade
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(Trade $trade)
     {
@@ -47,8 +53,6 @@ class TradeController extends Controller
      * @param  Request  $request
      *
      * @return Response
-     *
-     * @throws ValidationException
      */
     public function store(Request $request)
     {
