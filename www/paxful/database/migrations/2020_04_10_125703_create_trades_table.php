@@ -17,9 +17,13 @@ class CreateTradesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('payment_method');
-            $table->unsignedBigInteger('cents');
+            $table->unsignedBigInteger('rate')
+                ->comment('Represented in Cents, 1 bitcoin price in currency');
+            $table->unsignedBigInteger('amount')
+                ->comment('Represented in Cents, amount that is used to buy a bitcoin');
             $table->string('currency');
-            $table->unsignedBigInteger('satoshis');
+            $table->unsignedBigInteger('satoshis')
+                ->comment('Represented in Satoshis, how many satoshis got brought');
             $table->string('hash');
             $table->boolean('status');
             $table->timestamps();
