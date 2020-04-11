@@ -23,7 +23,8 @@ class Dashboard extends React.Component
         this.state = {
             loaded: false,
             trades: [],
-            tradeDetails: []
+            tradeDetails: [],
+            selectedTradeId: false
         };
     }
 
@@ -93,7 +94,8 @@ class Dashboard extends React.Component
         const key = findKey(this.state.trades, ['id', trade.id]);
 
         this.setState({
-            tradeDetails: this.state.trades[key]
+            tradeDetails: this.state.trades[key],
+            selectedTradeId: trade.id
         });
     }
 
@@ -136,7 +138,12 @@ class Dashboard extends React.Component
                 <Row>
                     <Col md={3} className={"dashboard-article"}>
                         {this.state.trades.map(trade =>
-                            <Trade item={trade} key={trade.id} selectItem={() => this.selectItem(trade)} />)}
+                            <Trade
+                                item={trade}
+                                key={trade.id}
+                                selectedTradeId={this.state.selectedTradeId}
+                                selectItem={() => this.selectItem(trade)}
+                            />)}
                     </Col>
 
                     <Col md={6} className={"dashboard-section"}>

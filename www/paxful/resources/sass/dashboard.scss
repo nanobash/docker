@@ -90,9 +90,18 @@ body {
     border-bottom: 0.1rem solid $dashboard-body-bg;
 }
 
+.article-trade-item-selected {
+    background-color: $dashboard-body-bg;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border-right: 0.15rem solid $dashboard-header-bg;
+}
+
 .article-trade-item:hover {
     cursor: pointer;
     background-color: $dashboard-body-bg;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 
 .article-trade-item-title {

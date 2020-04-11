@@ -10,10 +10,10 @@ import {MdCancel} from 'react-icons/md';
 export default class Trade extends React.Component
 {
     render() {
-        const {item} = this.props;
+        const {item, selectedTradeId} = this.props;
 
         return (
-            <div className={"article-trade-item"} onClick={this.props.selectItem}>
+            <div className={item.id === selectedTradeId ? "article-trade-item article-trade-item-selected" : "article-trade-item"} onClick={this.props.selectItem}>
                 <div className={"article-trade-item-title"}>
                     <IconContext.Provider value={{color: item.status ? "green" : "gray"}}>
                         <GoPrimitiveDot />
