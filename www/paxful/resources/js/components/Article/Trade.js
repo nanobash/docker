@@ -13,7 +13,7 @@ export default class Trade extends React.Component
         const {item} = this.props;
 
         return (
-            <div className={"article-trade-item"}>
+            <div className={"article-trade-item"} onClick={this.props.selectItem}>
                 <div className={"article-trade-item-title"}>
                     <IconContext.Provider value={{color: item.status ? "green" : "gray"}}>
                         <GoPrimitiveDot />

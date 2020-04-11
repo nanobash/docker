@@ -25,7 +25,7 @@ export default class TradeDetails extends React.Component
                             <FaUserTie />
 
                             <p>
-                                <span>+{details.user.reputation_plus}</span> / <span>-{details.user.reputation_minus}</span>
+                                <span>+{details.user.reputation_plus}</span> / <span>{details.user.reputation_minus}</span>
                             </p>
                         </div>
                     </div>

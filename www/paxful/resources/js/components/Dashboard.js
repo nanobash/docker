@@ -11,6 +11,7 @@ import Content from './Section/Content';
 import Textarea from './Section/Textarea';
 import Logo from "./Header/Logo";
 import TradeDetails from "./Aside/TradeDetails";
+import {findKey} from 'lodash';
 
 class Dashboard extends React.Component
 {
@@ -88,6 +89,14 @@ class Dashboard extends React.Component
         ];
     }
 
+    selectItem(trade) {
+        const key = findKey(this.state.trades, ['id', trade.id]);
+
+        this.setState({
+            tradeDetails: this.state.trades[key]
+        });
+    }
+
     componentDidMount() {
         fetch(`${this.appUrl}/api/trade`)
             .then(response => response.json())
@@ -99,7 +108,8 @@ class Dashboard extends React.Component
                 this.setState({
                     loaded: true,
                     trades: trades,
-                    tradeDetails: trades[0]
+                    tradeDetails: trades[0],
+                    selectedTradeId: trades[0].id
                 });
             });
     }
@@ -125,7 +135,8 @@ class Dashboard extends React.Component
 
                 <Row>
                     <Col md={3} className={"dashboard-article"}>
-                        {this.state.trades.map(trade => <Trade item={trade} key={trade.id} />)}
+                        {this.state.trades.map(trade =>
+                            <Trade item={trade} key={trade.id} selectItem={() => this.selectItem(trade)} />)}
                     </Col>
 
                     <Col md={6} className={"dashboard-section"}>

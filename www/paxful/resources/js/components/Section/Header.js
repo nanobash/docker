@@ -24,7 +24,7 @@ export default class Header extends React.Component
                     {' '}
                     <span className={"green"}>+{details.user.reputation_plus}</span>
                     {' / '}
-                    <span className={"red"}>-{details.user.reputation_minus}</span>
+                    <span className={"red"}>{details.user.reputation_minus}</span>
                 </div>
             </div>
         );

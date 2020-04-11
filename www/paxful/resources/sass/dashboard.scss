@@ -90,6 +90,11 @@ body {
     border-bottom: 0.1rem solid $dashboard-body-bg;
 }
 
+.article-trade-item:hover {
+    cursor: pointer;
+    background-color: $dashboard-body-bg;
+}
+
 .article-trade-item-title {
     margin-left: 1.2rem;
     padding-top: 1.2rem;
