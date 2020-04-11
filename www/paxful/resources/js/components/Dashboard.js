@@ -107,12 +107,14 @@ class Dashboard extends React.Component
                     return trade;
                 });
 
-                this.setState({
-                    loaded: true,
-                    trades: trades,
-                    tradeDetails: trades[0],
-                    selectedTradeId: trades[0].id
-                });
+                if (trades.length) {
+                    this.setState({
+                        loaded: true,
+                        trades: trades,
+                        tradeDetails: trades[0],
+                        selectedTradeId: trades[0].id
+                    });
+                }
             });
     }
 
