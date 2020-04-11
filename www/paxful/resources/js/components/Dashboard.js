@@ -111,7 +111,7 @@ class Dashboard extends React.Component
             <Container fluid={"md"}>
                 <Row className={"dashboard-header"}>
                     <Col md={2}>
-                        <Logo />
+                        <Logo url={this.appUrl} />
                     </Col>
 
                     <Col md={10}>
