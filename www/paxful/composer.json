@@ -59,6 +59,7 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php artisan package:discover --ansi",
             "@php artisan key:generate --ansi",
+            "@php artisan config:cache",
             "@php artisan migrate:fresh --seeder=DatabaseSeeder",
             "yarn install",
             "yarn run prod"
