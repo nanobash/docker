@@ -7,6 +7,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Trade;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use Validator;
 
@@ -53,6 +54,8 @@ class TradeController extends Controller
      * @param  Request  $request
      *
      * @return Response
+     *
+     * @throws ValidationException
      */
     public function store(Request $request)
     {

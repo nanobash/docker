@@ -53,9 +53,9 @@ class Trade extends Model
      * Truncates income amount by a FIAT_PRECISION constant and multiplies to 100,
      *      in order to save it into DB represented as cents.
      *
-     * Logically satoshis could be not saved in DB, since they can be calculated based on rate and amount, however
-     *      for more clarity I am saving it as well. Basically each separate member (rate, amount, satoshis) can be
-     *      calculated based on other two parameters.
+     * Logically satoshis could be not saved in DB, since they can be calculated based on rate and amount anyways,
+     *      however for more clarity, flexibility and perhaps performance I am saving it as well. Basically each
+     *      separate set member of (rate, amount, satoshis) can be calculated based on other two.
      *
      * @param float $amount
      */
