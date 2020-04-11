@@ -27,18 +27,6 @@ class Trade extends Model
     ];
 
     /**
-     * Statically writing user_id as 1, since according to task requirements it is okay to have hardcoded user, even
-     *     though I have anyways added user into database and made foreign key relationship to trades table.
-     *     User with the id of 1 will be created by faker and all the trades will be assigned to this first user.
-     *
-     * @param int|null $value
-     */
-    public function setUserIdAttribute(?int $value): void
-    {
-        $this->attributes['user_id'] = 1;
-    }
-
-    /**
      * Truncates income rate by a FIAT_PRECISION constant and multiplies to 100,
      *      in order to save it into DB represented as cents.
      *

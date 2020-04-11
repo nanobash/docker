@@ -22,7 +22,6 @@ class Dashboard extends React.Component
         this.state = {
             loaded: false,
             trades: [],
-            count: 0
         };
     }
 
@@ -91,14 +90,13 @@ class Dashboard extends React.Component
     componentDidMount() {
         fetch(`${this.appUrl}/api/trade`)
             .then(response => response.json())
-            .then(response => {
-                const trades = response.result.map(trade => {
+            .then(result => {
+                const trades = result.map(trade => {
                     return trade;
                 });
 
                 this.setState({
                     trades: trades,
-                    count: response.count,
                     loaded: true
                 });
             });
@@ -146,7 +144,7 @@ class Dashboard extends React.Component
 
                     <Col md={3} className={"dashboard-aside"}>
                         {this.state.loaded &&
-                            <TradeDetails trade={trade} quantity={this.state.count} />
+                            <TradeDetails trade={trade} />
                         }
                     </Col>
                 </Row>

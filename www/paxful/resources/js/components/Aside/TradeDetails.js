@@ -5,7 +5,7 @@ import {FaUserTie} from 'react-icons/fa';
 export default class TradeDetails extends React.Component
 {
     render() {
-        const {trade, quantity} = this.props;
+        const {trade} = this.props;
 
         return (
             <>
@@ -34,7 +34,7 @@ export default class TradeDetails extends React.Component
                         <div className={"aside-trade-details-number-of-trades"}>
                             # OF TRADES
 
-                            <p className={"dashboard-title-light"}>{quantity}</p>
+                            <p className={"dashboard-title-light"}>{trade.user.trades_count}</p>
                         </div>
                     </div>
 

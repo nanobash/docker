@@ -16,24 +16,20 @@ class TradeController extends Controller
     /**
      * Returns last 30 trade records.
      *
-     * Eager loading trades with user because in real world example, each trade should have different user, therefore
-     *      the user data should differ from each other.
-     *
-     * IMPORTANT: Only loading count alongside with the trades in such way, because according to the assignment
-     *      we assume that all the trades belong to only one user.
+     * Eager loading trades with the user who created it.
      *
      * @return Response
      */
     public function index()
     {
         $trades = Trade::orderBy('id', 'DESC')
-            ->with('user')
+            ->with(['user' => function ($query) {
+                $query->withCount('trades');
+            }])
             ->limit(30)
             ->get();
 
-        $count = $trades->count();
-
-        return response(['count' => $count, 'result' => $trades], Response::HTTP_OK);
+        return response($trades, Response::HTTP_OK);
     }
 
     /**
