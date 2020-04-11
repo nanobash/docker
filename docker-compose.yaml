@@ -8,32 +8,32 @@ networks:
         - subnet: ${SUBNET_IPV4}
 
 services:
-  adminer:
-    container_name: adminer
-    image: adminer:${ADMINER_VERSION}
-    networks:
-      projextX:
-        ipv4_address: ${ADMINER_IPV4}
-    ports:
-      - "${ADMINER_HOST_PORT}:8080"
-    restart: always
+#  adminer:
+#    container_name: adminer
+#    image: adminer:${ADMINER_VERSION}
+#    networks:
+#      projextX:
+#        ipv4_address: ${ADMINER_IPV4}
+#    ports:
+#      - "${ADMINER_HOST_PORT}:8080"
+#    restart: always
 
-  percona:
-    container_name: percona
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-    image: percona:5.7
-    networks:
-      projextX:
-        ipv4_address: "${MYSQL_PERCONA_IPV4}"
-    ports:
-      - "${MYSQL_HOST_PORT}:3306"
-    restart: always
-    volumes:
-      - "${HOST_DATA_DIR_PATH}/percona:/var/lib/mysql"
+#  percona:
+#    container_name: percona
+#    environment:
+#      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#      MYSQL_USER: ${MYSQL_USER}
+#      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+#      MYSQL_DATABASE: ${MYSQL_DATABASE}
+#    image: percona:5.7
+#    networks:
+#      projextX:
+#        ipv4_address: "${MYSQL_PERCONA_IPV4}"
+#    ports:
+#      - "${MYSQL_HOST_PORT}:3306"
+#    restart: always
+#    volumes:
+#      - "${HOST_DATA_DIR_PATH}/percona:/var/lib/mysql"
 
   php:
     build:
