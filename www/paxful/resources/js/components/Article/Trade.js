@@ -15,24 +15,24 @@ export default class Trade extends React.Component
         return (
             <div className={"article-trade-item"}>
                 <div className={"article-trade-item-title"}>
-                    <IconContext.Provider value={{color: item.paymentStatus === 'PAID' ? "green" : "gray"}}>
+                    <IconContext.Provider value={{color: item.status ? "green" : "gray"}}>
                         <GoPrimitiveDot />
                     </IconContext.Provider>
 
-                    {item.username} is buying
+                    {item.user.username} is buying
                 </div>
 
                 <div className={"article-trade-item-payment-method"}>
-                    {item.paymentMethod}
+                    {item.payment_method}
                 </div>
 
                 <div className={"article-trade-item-amount"}>
-                    {item.amountUSD}
+                    {item.amount.USD}
                     <IconContext.Provider value={{ color: "green", size: "1.2em" }}>
                         <IoLogoUsd />
                     </IconContext.Provider>
                     {' '}
-                    {item.bitcoin}
+                    {item.satoshis.bitcoin}
                     {' '}
                     <IconContext.Provider value={{ color: "orange", size: "1.2em"}}>
                         <FaBitcoin />
@@ -42,13 +42,13 @@ export default class Trade extends React.Component
                 <div className={"article-trade-item-user"}>
                     <FaUserSecret />
 
-                    {item.paymentStatus === 'PAID' &&
+                    {item.status &&
                         <IconContext.Provider value={{color: "green"}}>
                             <IoMdCheckmarkCircle />
                         </IconContext.Provider>
                     }
 
-                    {item.paymentStatus === 'NOT PAID' &&
+                    {!item.status &&
                         <IconContext.Provider value={{color: "red"}}>
                             <MdCancel />
                         </IconContext.Provider>

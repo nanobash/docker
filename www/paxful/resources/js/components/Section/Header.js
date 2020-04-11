@@ -16,15 +16,15 @@ export default class Header extends React.Component
                 </div>
 
                 <div className={"section-header-payment-method"}>
-                    {trade.paymentMethod}
+                    {trade.payment_method}
                 </div>
 
                 <div className={"section-header-username"}>
-                    {trade.username}
+                    {trade.user.username}
                     {' '}
-                    <span className={"green"}>+{trade.reputationPlus}</span>
+                    <span className={"green"}>+{trade.user.reputation_plus}</span>
                     {' / '}
-                    <span className={"red"}>-{trade.reputationMinus}</span>
+                    <span className={"red"}>-{trade.user.reputation_minus}</span>
                 </div>
             </div>
         );

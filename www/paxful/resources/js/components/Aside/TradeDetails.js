@@ -5,12 +5,12 @@ import {FaUserTie} from 'react-icons/fa';
 export default class TradeDetails extends React.Component
 {
     render() {
-        const {trade} = this.props;
+        const {trade, quantity} = this.props;
 
         return (
             <>
                 <div className={"aside-trade-title"}>
-                    You are trading with <span>{trade.username}</span>
+                    You are trading with <span>{trade.user.username}</span>
 
                     <p>Started 23 minutes ago</p>
                 </div>
@@ -25,7 +25,7 @@ export default class TradeDetails extends React.Component
                             <FaUserTie />
 
                             <p>
-                                <span>+{trade.reputationPlus}</span> / <span>-{trade.reputationMinus}</span>
+                                <span>+{trade.user.reputation_plus}</span> / <span>-{trade.user.reputation_minus}</span>
                             </p>
                         </div>
                     </div>
@@ -34,7 +34,7 @@ export default class TradeDetails extends React.Component
                         <div className={"aside-trade-details-number-of-trades"}>
                             # OF TRADES
 
-                            <p className={"dashboard-title-light"}>{4}</p>
+                            <p className={"dashboard-title-light"}>{quantity}</p>
                         </div>
                     </div>
 
@@ -42,8 +42,8 @@ export default class TradeDetails extends React.Component
                         <div>
                             TRADE STATUS
 
-                            <p className={trade.paymentStatus === 'PAID' ? 'green' : 'red'}>
-                                {trade.paymentStatus}
+                            <p className={trade.status ? 'green' : 'red'}>
+                                {trade.status ? 'PAID' : 'NOT PAID'}
                             </p>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ export default class TradeDetails extends React.Component
                             TRADE HASH
 
                             <p className={"dashboard-title-light"}>
-                                45aFD3Rr
+                                {trade.hash.substring(0, 10)}
                             </p>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ export default class TradeDetails extends React.Component
                         <div>
                             AMOUNT USD
 
-                            <p className={"dashboard-title-light"}>{trade.amountUSD}</p>
+                            <p className={"dashboard-title-light"}>{trade.amount.USD}</p>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@ export default class TradeDetails extends React.Component
                         <div>
                             AMOUNT BTC
 
-                            <p className={"dashboard-title-light"}>{trade.bitcoin}</p>
+                            <p className={"dashboard-title-light"}>{trade.satoshis.bitcoin}</p>
                         </div>
                     </div>
                 </div>

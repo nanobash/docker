@@ -14,6 +14,18 @@ import TradeDetails from "./Aside/TradeDetails";
 
 class Dashboard extends React.Component
 {
+    constructor(props) {
+        super(props);
+
+        this.appUrl = props.appUrl;
+
+        this.state = {
+            loaded: false,
+            trades: [],
+            count: 0
+        };
+    }
+
     sectionContentComments() {
         // Faking comments, that actually should come from database for example
         return [
@@ -76,61 +88,24 @@ class Dashboard extends React.Component
         ];
     }
 
-    render() {
-        const trades = [
-            {
-                id: 10,
-                username: 'Jannie Smith',
-                reputationPlus: 37,
-                reputationMinus: 1,
-                amountUSD: 12000,
-                bitcoin: 2.26000312,
-                paymentMethod: 'PayPal',
-                paymentStatus: 'PAID',
-            },
-            {
-                id: 12,
-                username: 'John Doe',
-                reputationPlus: 37,
-                reputationMinus: 1,
-                amountUSD: 5100,
-                bitcoin: 1.12000002,
-                paymentMethod: 'Amazon Gift Card',
-                paymentStatus: 'NOT PAID',
-            },
-            {
-                id: 15,
-                username: 'Kate Smith',
-                reputationPlus: 37,
-                reputationMinus: 1,
-                amountUSD: 20,
-                bitcoin: 0.00000312,
-                paymentMethod: 'iTunes Gift Card',
-                paymentStatus: 'PAID',
-            },
-            {
-                id: 16,
-                username: 'Jimmy Doe',
-                reputationPlus: 37,
-                reputationMinus: 1,
-                amountUSD: 20000,
-                bitcoin: 5.30003011,
-                paymentMethod: 'Mastercard',
-                paymentStatus: 'PAID',
-            },
-            {
-                id: 17,
-                username: 'Dummy Doe',
-                reputationPlus: 37,
-                reputationMinus: 1,
-                amountUSD: 201,
-                bitcoin: 0.26000401,
-                paymentMethod: 'Mastercard',
-                paymentStatus: 'PAID',
-            }
-        ];
+    componentDidMount() {
+        fetch(`${this.appUrl}/api/trade`)
+            .then(response => response.json())
+            .then(response => {
+                const trades = response.result.map(trade => {
+                    return trade;
+                });
 
-        const trade = trades[1];
+                this.setState({
+                    trades: trades,
+                    count: response.count,
+                    loaded: true
+                });
+            });
+    }
+
+    render() {
+        const trade = this.state.trades[0];
 
         return (
             <Container fluid={"md"}>
@@ -152,11 +127,13 @@ class Dashboard extends React.Component
 
                 <Row>
                     <Col md={3} className={"dashboard-article"}>
-                        {trades.map(trade => <Trade item={trade} key={trade.id} />)}
+                        {this.state.trades.map(trade => <Trade item={trade} key={trade.id} />)}
                     </Col>
 
                     <Col md={6} className={"dashboard-section"}>
-                        <Header trade={trade} />
+                        {this.state.loaded &&
+                            <Header trade={trade} />
+                        }
 
                         <div className={"section-content"}>
                             {this.sectionContentComments().map(
@@ -168,7 +145,9 @@ class Dashboard extends React.Component
                     </Col>
 
                     <Col md={3} className={"dashboard-aside"}>
-                        <TradeDetails trade={trade}/>
+                        {this.state.loaded &&
+                            <TradeDetails trade={trade} quantity={this.state.count} />
+                        }
                     </Col>
                 </Row>
             </Container>
@@ -177,5 +156,10 @@ class Dashboard extends React.Component
 }
 
 if (document.getElementById('dashboard')) {
-    ReactDOM.render(<Dashboard />, document.getElementById('dashboard'));
+    const element = document.getElementById('dashboard');
+
+    // Assigns and passes initial dataSet to dashboard main component
+    const dataSet = Object.assign({}, element.dataset);
+
+    ReactDOM.render(<Dashboard {...dataSet}/>, element);
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <div id="dashboard"></div>
+    <div id="dashboard" data-app-url="{{ $app_url }}"></div>
     <script type="text/javascript" src="{{ asset('js/app.js')  }}"></script>
 </body>
 </html>
