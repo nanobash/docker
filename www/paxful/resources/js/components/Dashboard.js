@@ -100,7 +100,7 @@ class Dashboard extends React.Component
     }
 
     componentDidMount() {
-        fetch(`${this.appUrl}/api/trade`)
+        fetch('./api/trade')
             .then(response => response.json())
             .then(result => {
                 const trades = result.map(trade => {
