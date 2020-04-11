@@ -22,6 +22,7 @@ class Dashboard extends React.Component
         this.state = {
             loaded: false,
             trades: [],
+            tradeDetails: []
         };
     }
 
@@ -96,15 +97,14 @@ class Dashboard extends React.Component
                 });
 
                 this.setState({
+                    loaded: true,
                     trades: trades,
-                    loaded: true
+                    tradeDetails: trades[0]
                 });
             });
     }
 
     render() {
-        const trade = this.state.trades[0];
-
         return (
             <Container fluid={"md"}>
                 <Row className={"dashboard-header"}>
@@ -130,7 +130,7 @@ class Dashboard extends React.Component
 
                     <Col md={6} className={"dashboard-section"}>
                         {this.state.loaded &&
-                            <Header trade={trade} />
+                            <Header details={this.state.tradeDetails} />
                         }
 
                         <div className={"section-content"}>
@@ -144,7 +144,7 @@ class Dashboard extends React.Component
 
                     <Col md={3} className={"dashboard-aside"}>
                         {this.state.loaded &&
-                            <TradeDetails trade={trade} />
+                            <TradeDetails details={this.state.tradeDetails} />
                         }
                     </Col>
                 </Row>

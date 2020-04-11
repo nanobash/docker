@@ -5,7 +5,7 @@ import {IconContext} from 'react-icons';
 export default class Header extends React.Component
 {
     render() {
-        const {trade} = this.props;
+        const {details} = this.props;
 
         return (
             <div className={"section-header"}>
@@ -16,15 +16,15 @@ export default class Header extends React.Component
                 </div>
 
                 <div className={"section-header-payment-method"}>
-                    {trade.payment_method}
+                    {details.payment_method}
                 </div>
 
                 <div className={"section-header-username"}>
-                    {trade.user.username}
+                    {details.user.username}
                     {' '}
-                    <span className={"green"}>+{trade.user.reputation_plus}</span>
+                    <span className={"green"}>+{details.user.reputation_plus}</span>
                     {' / '}
-                    <span className={"red"}>-{trade.user.reputation_minus}</span>
+                    <span className={"red"}>-{details.user.reputation_minus}</span>
                 </div>
             </div>
         );
