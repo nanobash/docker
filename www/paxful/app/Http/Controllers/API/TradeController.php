@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Trade;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,9 +56,9 @@ class TradeController extends Controller
      */
     public function store(Request $request)
     {
-        // user_id and currency are statically written in TradeController as they can be hardcoded according to task
+        // The currency is statically written in TradeController, as according to assignment is can be always USD
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required|integer',
+            'user_id' => 'required|integer|exists:users,id',
             'payment_method' => 'required|string|max:255',
             'rate' => 'required|numeric',
             'amount' => 'required|numeric',
