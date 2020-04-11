@@ -80,6 +80,7 @@ services:
         ipv4_address: ${PHP_IPV4}
     volumes:
       - ${HOST_WWW_DIR}:/var/www
+    working_dir: /var/www/paxful
 
   postgres:
     container_name: postgres
