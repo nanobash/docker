@@ -1,12 +1,11 @@
-FROM php:7.4-fpm
+FROM php:8.0.10-fpm-bullseye
 
 LABEL MAINTAINER="Tornike Nanobashvili <tnanobashvili92@gmail.com>"
 
-LABEL DESCRIPTION="Runs PHP version 7.2-fpm preconfigured by .env variables"
+LABEL DESCRIPTION="Runs PHP version 8.0.10-fpm-bullseye preconfigured by .env variables"
 
 ARG PHP_EXT_BZ2=false
 ARG PHP_EXT_DOM=false
-ARG PHP_EXT_ENCHANT=false
 ARG PHP_EXT_GD=false
 ARG PHP_EXT_GMP=false
 ARG PHP_EXT_IMAP=false
@@ -27,7 +26,6 @@ RUN set -x \
     apt-get -y install libxml2-dev && \
     get_lib () if [ $1 = true ]; then shift; libs="$libs $*"; fi && \
     get_lib ${PHP_EXT_BZ2} libbz2-dev && \
-    get_lib ${PHP_EXT_ENCHANT} libenchant-dev && \
     get_lib ${PHP_EXT_GD} libpng-dev && \
     get_lib ${PHP_EXT_GMP} libgmp-dev && \
     get_lib ${PHP_EXT_IMAP} libc-client-dev libkrb5-dev && \
@@ -60,11 +58,8 @@ ARG PHP_EXT_SYSCMSG=false
 ARG PHP_EXT_SYSVSEM=false
 ARG PHP_EXT_SYSVSHM=false
 ARG PHP_EXT_XDEBUG=false
-ARG PHP_EXT_XDEBUG_HOST=false
-ARG PHP_EXT_XDEBUG_PORT=false
-ARG PHP_EXT_XMLRPC=false
 
-COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     get_ext ${PHP_EXT_BCMATH} bcmath && \
@@ -72,7 +67,6 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     get_ext ${PHP_EXT_CALENDAR} calendar && \
     get_ext ${PHP_EXT_DBA} dba && \
     get_ext ${PHP_EXT_DOM} dom && \
-    get_ext ${PHP_EXT_ENCHANT} enchant && \
     get_ext ${PHP_EXT_EXIF} exif && \
     get_ext ${PHP_EXT_FILEINFO} fileinfo && \
     get_ext ${PHP_EXT_GD} gd && \
@@ -105,15 +99,12 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     get_ext ${PHP_EXT_SYSVSEM} sysvsem && \
     get_ext ${PHP_EXT_SYSVSHM} sysvshm && \
     get_ext ${PHP_EXT_TIDY} tidy && \
-    get_ext ${PHP_EXT_XMLRPC} xmlrpc && \
     get_ext ${PHP_EXT_XSL} xsl && \
     get_ext ${PHP_EXT_ZIP} zip && \
     if [ ! -z "$exts" ]; then docker-php-ext-install -j$(nproc) $exts; fi && \
     if [ $PHP_EXT_XDEBUG = true ]; then \
         pecl install xdebug && \
-        docker-php-ext-enable xdebug && \
-        echo "xdebug.remote_host=${PHP_EXT_XDEBUG_HOST}" >> /usr/local/etc/php/conf.d/xdebug.ini && \
-        echo "xdebug.remote_port=${PHP_EXT_XDEBUG_PORT}" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+        docker-php-ext-enable xdebug; \
     fi && \
     sed -i 's/^;catch_workers_output = yes/catch_workers_output = yes/g' /usr/local/etc/php-fpm.d/www.conf && \
     sed -i 's/^;php_admin_flag\[log_errors\] = on/php_admin_flag[log_errors] = on/g' /usr/local/etc/php-fpm.d/www.conf && \

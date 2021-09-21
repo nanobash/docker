@@ -1,4 +1,4 @@
-FROM nginx:1.17
+FROM nginx:1.21.3
 
 LABEL MAINTAINER="Tornike Nanobashvili <tnanobashvili92@gmail.com>"
 
@@ -6,8 +6,8 @@ LABEL DESCRIPTION="Runs Nginx web server for vanilla PHP, Symfony and Laravel fr
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY certs/live.test.crt /etc/nginx/certs/live.test.crt
-COPY certs/live.test.key /etc/nginx/certs/live.test.key
+COPY certs/homeland.local.crt /etc/nginx/certs/homeland.local.crt
+COPY certs/homeland.local.key /etc/nginx/certs/homeland.local.key
 
 ARG NGINX_DEFAULT=default.conf
 ARG NGINX_SYMFONY=symfony.conf
