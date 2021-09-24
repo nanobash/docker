@@ -12,22 +12,7 @@ volumes:
     driver: local
 
 services:
-  postgres:
-    container_name: postgres
-    environment:
-      POSTGRES_USER: ${DOCKER_POSTGRES_USER}
-      POSTGRES_PASSWORD: ${DOCKER_POSTGRES_PASSWORD}
-    image: postgres:13.4
-    networks:
-      projextX:
-        ipv4_address: "${DOCKER_POSTGRES_IPV4}"
-    ports:
-      - "${DOCKER_POSTGRES_PORT:-5432}:5432"
-    restart: always
-    volumes:
-      - "postgres:/var/lib/postgresql/data"
-
-  php:
+  app:
     build:
       args:
         PHP_EXT_BCMATH: ${PHP_EXT_BCMATH}
@@ -62,10 +47,12 @@ services:
         PHP_EXT_XSL: ${PHP_EXT_XSL}
         PHP_EXT_ZIP: ${PHP_EXT_ZIP}
       context: ./services/php
-    container_name: php
+    container_name: app
     networks:
       projextX:
         ipv4_address: ${DOCKER_PHP_IPV4}
+    ports:
+      - "2222:22"
     volumes:
       - ${WEB_ROOT}:/var/www
     working_dir: /var/www
@@ -79,7 +66,7 @@ services:
       context: ./services/nginx
     container_name: nginx
     depends_on:
-      - php
+      - app
       - postgres
     networks:
       projextX:
@@ -89,3 +76,18 @@ services:
     volumes:
       - ${WEB_ROOT}:/var/www
     working_dir: /var/www
+
+  postgres:
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${DOCKER_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${DOCKER_POSTGRES_PASSWORD}
+    image: postgres:13.4
+    networks:
+      projextX:
+        ipv4_address: "${DOCKER_POSTGRES_IPV4}"
+    ports:
+      - "${DOCKER_POSTGRES_PORT:-5432}:5432"
+    restart: always
+    volumes:
+      - "postgres:/var/lib/postgresql/data"

@@ -23,7 +23,13 @@ RUN set -x \
     apt-get autoremove && \
     apt-get clean all && \
     apt-get update && \
-    apt-get -y install libxml2-dev && \
+    apt-get -y install libxml2-dev openssh-server supervisor && \
+    mkdir /run/sshd && \
+    mkdir -p /var/log/supervisor && \
+    { if [ ! -d "/root/.ssh" ]; then mkdir /root/.ssh; fi } && \
+    chmod 700 /root/.ssh && \
+    touch /root/.ssh/authorized_keys && \
+    chmod 644 /root/.ssh/authorized_keys && \
     get_lib () if [ $1 = true ]; then shift; libs="$libs $*"; fi && \
     get_lib ${PHP_EXT_BZ2} libbz2-dev && \
     get_lib ${PHP_EXT_GD} libpng-dev && \
@@ -39,6 +45,10 @@ RUN set -x \
     get_lib ${PHP_EXT_ZIP} libzip-dev && \
     apt-get install -y --no-install-recommends less $libs && \
     rm -rf /var/lib/apt/lists/*
+
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY ssh/id_rsa.pub /root/.ssh/authorized_keys
+COPY supervisor/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 
 ARG PHP_EXT_BCMATH=false
 ARG PHP_EXT_CALENDAR=false
@@ -58,8 +68,6 @@ ARG PHP_EXT_SYSCMSG=false
 ARG PHP_EXT_SYSVSEM=false
 ARG PHP_EXT_SYSVSHM=false
 ARG PHP_EXT_XDEBUG=false
-
-COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     get_ext ${PHP_EXT_BCMATH} bcmath && \
@@ -124,4 +132,6 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
 RUN usermod -u 1000 www-data && \
     groupmod -g 1000 www-data
 
-EXPOSE 9000
+CMD ["/usr/bin/supervisord"]
+
+EXPOSE 9000 22
