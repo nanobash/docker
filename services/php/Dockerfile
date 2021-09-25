@@ -83,6 +83,7 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     if [ $PHP_EXT_IMAP = true ]; then \
         docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     fi && \
+    get_ext ${PHP_EXT_INTL} intl && \
     get_ext ${PHP_EXT_IMAP} imap && \
     get_ext ${PHP_EXT_LDAP} ldap && \
     get_ext ${PHP_EXT_MYSQLI} mysqli && \
