@@ -134,4 +134,4 @@ RUN usermod -u 1000 www-data && \
 
 CMD ["/usr/bin/supervisord"]
 
-EXPOSE 9000 22
+EXPOSE 22 9000
