@@ -50,12 +50,14 @@ COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 COPY ssh/id_rsa.pub /root/.ssh/authorized_keys
 COPY supervisor/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 
+ARG PHP_EXT_APCU=false
 ARG PHP_EXT_BCMATH=false
 ARG PHP_EXT_CALENDAR=false
 ARG PHP_EXT_DBA=false
 ARG PHP_EXT_EXIF=false
 ARG PHP_EXT_FILEINFO=false
 ARG PHP_EXT_GETTEXT=false
+ARG PHP_EXT_INTL=false
 ARG PHP_EXT_MYSQLI=false
 ARG PHP_EXT_OPCACHE=false
 ARG PHP_EXT_PCNTL=false
@@ -70,6 +72,10 @@ ARG PHP_EXT_SYSVSHM=false
 ARG PHP_EXT_XDEBUG=false
 
 RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
+    if [ $PHP_EXT_APCU = true ]; then \
+        pecl install apcu && \
+        docker-php-ext-enable apcu; \
+    fi && \
     get_ext ${PHP_EXT_BCMATH} bcmath && \
     get_ext ${PHP_EXT_BZ2} bz2 && \
     get_ext ${PHP_EXT_CALENDAR} calendar && \

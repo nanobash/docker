@@ -12,6 +12,7 @@ services:
   app:
     build:
       args:
+        PHP_EXT_APCU: ${PHP_EXT_APCU}
         PHP_EXT_BCMATH: ${PHP_EXT_BCMATH}
         PHP_EXT_BZ2: ${PHP_EXT_BZ2}
         PHP_EXT_CALENDAR: ${PHP_EXT_CALENDAR}
