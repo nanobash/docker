@@ -34,6 +34,7 @@ services:
                 PHP_EXT_PDO_ODBC: ${PHP_EXT_PDO_ODBC}
                 PHP_EXT_PDO_PGSQL: ${PHP_EXT_PDO_PGSQL}
                 PHP_EXT_PGSQL: ${PHP_EXT_PGSQL}
+                PHP_EXT_REDIS: ${PHP_EXT_REDIS}
                 PHP_EXT_SHMOP: ${PHP_EXT_SHMOP}
                 PHP_EXT_SNMP: ${PHP_EXT_SNMP}
                 PHP_EXT_SOAP: ${PHP_EXT_SOAP}

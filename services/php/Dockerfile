@@ -63,6 +63,7 @@ ARG PHP_EXT_OPCACHE=false
 ARG PHP_EXT_PCNTL=false
 ARG PHP_EXT_PDO_MYSQL=false
 ARG PHP_EXT_PGSQL=false
+ARG PHP_EXT_REDIS=false
 ARG PHP_EXT_SHMOP=false
 ARG PHP_EXT_SOAP=false
 ARG PHP_EXT_SOCKETS=false
@@ -106,6 +107,10 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     get_ext ${PHP_EXT_PDO_ODBC} pdo_odbc && \
     get_ext ${PHP_EXT_PDO_PGSQL} pdo_pgsql && \
     get_ext ${PHP_EXT_PGSQL} pgsql && \
+    if [ $PHP_EXT_REDIS = true ]; then \
+        pecl install redis && \
+        docker-php-ext-enable redis; \
+    fi && \
     get_ext ${PHP_EXT_SHMOP} shmop && \
     get_ext ${PHP_EXT_SNMP} snmp && \
     get_ext ${PHP_EXT_SOAP} soap && \
