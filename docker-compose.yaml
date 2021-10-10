@@ -1,101 +1,101 @@
 version: "3"
 
 networks:
-  projextX:
-    driver: bridge
+    projextX:
+        driver: bridge
 
 volumes:
-  postgres:
-    driver: local
+    postgres:
+        driver: local
 
 services:
-  app:
-    build:
-      args:
-        PHP_EXT_APCU: ${PHP_EXT_APCU}
-        PHP_EXT_BCMATH: ${PHP_EXT_BCMATH}
-        PHP_EXT_BZ2: ${PHP_EXT_BZ2}
-        PHP_EXT_CALENDAR: ${PHP_EXT_CALENDAR}
-        PHP_EXT_DBA: ${PHP_EXT_DBA}
-        PHP_EXT_DOM: ${PHP_EXT_DOM}
-        PHP_EXT_EXIF: ${PHP_EXT_EXIF}
-        PHP_EXT_FILEINFO: ${PHP_EXT_FILEINFO}
-        PHP_EXT_GD: ${PHP_EXT_GD}
-        PHP_EXT_GETTEXT: ${PHP_EXT_GETTEXT}
-        PHP_EXT_GMP: ${PHP_EXT_GMP}
-        PHP_EXT_IMAP: ${PHP_EXT_IMAP}
-        PHP_EXT_INTL: ${PHP_EXT_INTL}
-        PHP_EXT_LDAP: ${PHP_EXT_LDAP}
-        PHP_EXT_MYSQLI: ${PHP_EXT_MYSQLI}
-        PHP_EXT_OPCACHE: ${PHP_EXT_OPCACHE}
-        PHP_EXT_PCNTL: ${PHP_EXT_PCNTL}
-        PHP_EXT_PDO_DBLIB: ${PHP_EXT_PDO_DBLIB}
-        PHP_EXT_PDO_MYSQL: ${PHP_EXT_PDO_MYSQL}
-        PHP_EXT_PDO_ODBC: ${PHP_EXT_PDO_ODBC}
-        PHP_EXT_PDO_PGSQL: ${PHP_EXT_PDO_PGSQL}
-        PHP_EXT_PGSQL: ${PHP_EXT_PGSQL}
-        PHP_EXT_SHMOP: ${PHP_EXT_SHMOP}
-        PHP_EXT_SNMP: ${PHP_EXT_SNMP}
-        PHP_EXT_SOAP: ${PHP_EXT_SOAP}
-        PHP_EXT_SOCKETS: ${PHP_EXT_SOCKETS}
-        PHP_EXT_SYSCMSG: ${PHP_EXT_SYSCMSG}
-        PHP_EXT_SYSVSEM: ${PHP_EXT_SYSVSEM}
-        PHP_EXT_SYSVSHM: ${PHP_EXT_SYSVSHM}
-        PHP_EXT_TIDY: ${PHP_EXT_TIDY}
-        PHP_EXT_XDEBUG: ${PHP_EXT_XDEBUG}
-        PHP_EXT_XSL: ${PHP_EXT_XSL}
-        PHP_EXT_ZIP: ${PHP_EXT_ZIP}
-      context: ./services/php
-    container_name: app
-    networks:
-      - projextX
-    ports:
-      - "2222:22"
-    volumes:
-      - ${WEB_ROOT}:/var/www
-    working_dir: /var/www
+    app:
+        build:
+            args:
+                PHP_EXT_APCU: ${PHP_EXT_APCU}
+                PHP_EXT_BCMATH: ${PHP_EXT_BCMATH}
+                PHP_EXT_BZ2: ${PHP_EXT_BZ2}
+                PHP_EXT_CALENDAR: ${PHP_EXT_CALENDAR}
+                PHP_EXT_DBA: ${PHP_EXT_DBA}
+                PHP_EXT_DOM: ${PHP_EXT_DOM}
+                PHP_EXT_EXIF: ${PHP_EXT_EXIF}
+                PHP_EXT_FILEINFO: ${PHP_EXT_FILEINFO}
+                PHP_EXT_GD: ${PHP_EXT_GD}
+                PHP_EXT_GETTEXT: ${PHP_EXT_GETTEXT}
+                PHP_EXT_GMP: ${PHP_EXT_GMP}
+                PHP_EXT_IMAP: ${PHP_EXT_IMAP}
+                PHP_EXT_INTL: ${PHP_EXT_INTL}
+                PHP_EXT_LDAP: ${PHP_EXT_LDAP}
+                PHP_EXT_MYSQLI: ${PHP_EXT_MYSQLI}
+                PHP_EXT_OPCACHE: ${PHP_EXT_OPCACHE}
+                PHP_EXT_PCNTL: ${PHP_EXT_PCNTL}
+                PHP_EXT_PDO_DBLIB: ${PHP_EXT_PDO_DBLIB}
+                PHP_EXT_PDO_MYSQL: ${PHP_EXT_PDO_MYSQL}
+                PHP_EXT_PDO_ODBC: ${PHP_EXT_PDO_ODBC}
+                PHP_EXT_PDO_PGSQL: ${PHP_EXT_PDO_PGSQL}
+                PHP_EXT_PGSQL: ${PHP_EXT_PGSQL}
+                PHP_EXT_SHMOP: ${PHP_EXT_SHMOP}
+                PHP_EXT_SNMP: ${PHP_EXT_SNMP}
+                PHP_EXT_SOAP: ${PHP_EXT_SOAP}
+                PHP_EXT_SOCKETS: ${PHP_EXT_SOCKETS}
+                PHP_EXT_SYSCMSG: ${PHP_EXT_SYSCMSG}
+                PHP_EXT_SYSVSEM: ${PHP_EXT_SYSVSEM}
+                PHP_EXT_SYSVSHM: ${PHP_EXT_SYSVSHM}
+                PHP_EXT_TIDY: ${PHP_EXT_TIDY}
+                PHP_EXT_XDEBUG: ${PHP_EXT_XDEBUG}
+                PHP_EXT_XSL: ${PHP_EXT_XSL}
+                PHP_EXT_ZIP: ${PHP_EXT_ZIP}
+            context: ./services/php
+        container_name: app
+        networks:
+            - projextX
+        ports:
+            - "2222:22"
+        volumes:
+            - ${WEB_ROOT}:/var/www
+        working_dir: /var/www
 
-  nginx:
-    build:
-      args:
-        NGINX_DEFAULT: ${DOCKER_NGINX_DEFAULT}
-        NGINX_LARAVEL: ${DOCKER_NGINX_LARAVEL}
-        NGINX_SYMFONY: ${DOCKER_NGINX_SYMFONY}
-      context: ./services/nginx
-    container_name: nginx
-    depends_on:
-      - app
-      - postgres
-      - redis
-    networks:
-      - projextX
-    ports:
-      - "${DOCKER_NGINX_HTTP_PORT:-80}:80"
-      - "${DOCKER_NGINX_HTTPS_PORT:-443}:443"
-    volumes:
-      - ${WEB_ROOT}:/var/www
-    working_dir: /var/www
+    nginx:
+        build:
+            args:
+                NGINX_DEFAULT: ${DOCKER_NGINX_DEFAULT}
+                NGINX_LARAVEL: ${DOCKER_NGINX_LARAVEL}
+                NGINX_SYMFONY: ${DOCKER_NGINX_SYMFONY}
+            context: ./services/nginx
+        container_name: nginx
+        depends_on:
+            - app
+            - postgres
+            - redis
+        networks:
+            - projextX
+        ports:
+            - "${DOCKER_NGINX_HTTP_PORT:-80}:80"
+            - "${DOCKER_NGINX_HTTPS_PORT:-443}:443"
+        volumes:
+            - ${WEB_ROOT}:/var/www
+        working_dir: /var/www
 
-  postgres:
-    container_name: postgres
-    environment:
-      POSTGRES_USER: ${DOCKER_POSTGRES_USER}
-      POSTGRES_PASSWORD: ${DOCKER_POSTGRES_PASSWORD}
-    image: postgres:13.4
-    networks:
-      - projextX
-    ports:
-      - "${DOCKER_POSTGRES_PORT:-5432}:5432"
-    restart: always
-    volumes:
-      - "postgres:/var/lib/postgresql/data"
+    postgres:
+        container_name: postgres
+        environment:
+            POSTGRES_USER: ${DOCKER_POSTGRES_USER}
+            POSTGRES_PASSWORD: ${DOCKER_POSTGRES_PASSWORD}
+        image: postgres:13.4
+        networks:
+            - projextX
+        ports:
+            - "${DOCKER_POSTGRES_PORT:-5432}:5432"
+        restart: always
+        volumes:
+            - "postgres:/var/lib/postgresql/data"
 
-  redis:
-    build:
-      context: ./services/redis
-    container_name: redis
-    networks:
-      - projextX
-    ports:
-      - "${DOCKER_REDIS_PORT:-6379}:6379"
-    restart: always
+    redis:
+        build:
+            context: ./services/redis
+        container_name: redis
+        networks:
+            - projextX
+        ports:
+            - "${DOCKER_REDIS_PORT:-6379}:6379"
+        restart: always
