@@ -66,6 +66,7 @@ services:
         container_name: nginx
         depends_on:
             - app
+            - mysql
             - postgres
             - redis
         networks:
@@ -76,6 +77,18 @@ services:
         volumes:
             - ${WEB_ROOT}:/var/www
         working_dir: /var/www
+
+    mysql:
+        command: --default-authentication-plugin=mysql_native_password
+        container_name: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DOCKER_MYSQL_ROOT_PASSWORD}
+        image: mysql:latest
+        networks:
+            - projextX
+        ports:
+            - "${DOCKER_MYSQL_PORT:-3306}:3306"
+        restart: always
 
     postgres:
         container_name: postgres
