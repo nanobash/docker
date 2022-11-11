@@ -1,8 +1,8 @@
-FROM php:8.0.10-fpm-bullseye
+FROM php:8.1.0-fpm
 
 LABEL MAINTAINER="Tornike Nanobashvili <tnanobashvili92@gmail.com>"
 
-LABEL DESCRIPTION="Runs PHP version 8.0.10-fpm-bullseye preconfigured by .env variables"
+LABEL DESCRIPTION="Runs PHP version php:8.1.0-fpm preconfigured by .env variables"
 
 ARG PHP_EXT_BZ2=false
 ARG PHP_EXT_DOM=false
