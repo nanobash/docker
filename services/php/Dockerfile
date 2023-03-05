@@ -131,6 +131,8 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     echo "\nPHP ${PHP_VERSION} has been successfully installed\n" && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     echo "Composer (dependency management tool for PHP) has been successfully installed\n" && \
+    curl -sS https://get.symfony.com/cli/installer | bash && \
+    mv /root/.symfony5/bin/symfony /usr/local/bin/symfony && \
     curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh && \
     bash /tmp/nodesource_setup.sh && \
     rm /tmp/nodesource_setup.sh && \
