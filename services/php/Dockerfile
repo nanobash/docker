@@ -137,6 +137,7 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     bash /tmp/nodesource_setup.sh && \
     rm /tmp/nodesource_setup.sh && \
     apt-get install -y git && \
+    git config --global user.name "Tornike" && git config --global user.email "tnanobashvili92@gmail.com" && \
     apt-get install -y nodejs && \
     echo "Node.js has been successfully installed\n" && \
     curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
