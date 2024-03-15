@@ -1,4 +1,4 @@
-FROM php:8.1.0-fpm
+FROM php:8.2-fpm
 
 LABEL MAINTAINER="Tornike Nanobashvili <tnanobashvili92@gmail.com>"
 
