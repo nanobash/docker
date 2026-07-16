@@ -1,11 +1,10 @@
-FROM php:8.2-fpm
+FROM php:8.5-fpm
 
 LABEL MAINTAINER="Tornike Nanobashvili <tnanobashvili92@gmail.com>"
 
-LABEL DESCRIPTION="Runs PHP version php:8.1.0-fpm preconfigured by .env variables"
+LABEL DESCRIPTION="Runs PHP version php:8.5-fpm preconfigured by .env variables"
 
 ARG PHP_EXT_BZ2=false
-ARG PHP_EXT_DOM=false
 ARG PHP_EXT_GD=false
 ARG PHP_EXT_GMP=false
 ARG PHP_EXT_IMAP=false
@@ -60,7 +59,6 @@ ARG PHP_EXT_EXIF=false
 ARG PHP_EXT_FILEINFO=false
 ARG PHP_EXT_GETTEXT=false
 ARG PHP_EXT_MYSQLI=false
-ARG PHP_EXT_OPCACHE=false
 ARG PHP_EXT_PCNTL=false
 ARG PHP_EXT_PDO_MYSQL=false
 ARG PHP_EXT_PGSQL=false
@@ -82,7 +80,6 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     get_ext ${PHP_EXT_BZ2} bz2 && \
     get_ext ${PHP_EXT_CALENDAR} calendar && \
     get_ext ${PHP_EXT_DBA} dba && \
-    get_ext ${PHP_EXT_DOM} dom && \
     get_ext ${PHP_EXT_EXIF} exif && \
     get_ext ${PHP_EXT_FILEINFO} fileinfo && \
     get_ext ${PHP_EXT_GD} gd && \
@@ -95,7 +92,6 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     get_ext ${PHP_EXT_IMAP} imap && \
     get_ext ${PHP_EXT_LDAP} ldap && \
     get_ext ${PHP_EXT_MYSQLI} mysqli && \
-    get_ext ${PHP_EXT_OPCACHE} opcache && \
     get_ext ${PHP_EXT_PCNTL} pcntl && \
     if [ $PHP_EXT_PDO_DBLIB = true ]; then \
         ln -s $(find / -iname libsybdb.a 2>/dev/null) /usr/lib; \
