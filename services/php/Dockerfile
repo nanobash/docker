@@ -9,6 +9,7 @@ ARG PHP_EXT_DOM=false
 ARG PHP_EXT_GD=false
 ARG PHP_EXT_GMP=false
 ARG PHP_EXT_IMAP=false
+ARG PHP_EXT_INTL=false
 ARG PHP_EXT_LDAP=false
 ARG PHP_EXT_PDO_DBLIB=false
 ARG PHP_EXT_PDO_ODBC=false
@@ -24,7 +25,7 @@ RUN set -x \
     apt-get clean all && \
     apt-get update && \
     apt-get -y install libxml2-dev openssh-server supervisor && \
-    mkdir /run/sshd && \
+    mkdir -p /run/sshd && \
     mkdir -p /var/log/supervisor && \
     { if [ ! -d "/root/.ssh" ]; then mkdir /root/.ssh; fi } && \
     chmod 700 /root/.ssh && \
@@ -35,6 +36,7 @@ RUN set -x \
     get_lib ${PHP_EXT_GD} libpng-dev && \
     get_lib ${PHP_EXT_GMP} libgmp-dev && \
     get_lib ${PHP_EXT_IMAP} libc-client-dev libkrb5-dev && \
+    get_lib ${PHP_EXT_INTL} libicu-dev && \
     get_lib ${PHP_EXT_LDAP} libldb-dev libldap2-dev && \
     get_lib ${PHP_EXT_PDO_DBLIB} freetds-dev && \
     get_lib ${PHP_EXT_PDO_ODBC} unixodbc-dev && \
@@ -57,7 +59,6 @@ ARG PHP_EXT_DBA=false
 ARG PHP_EXT_EXIF=false
 ARG PHP_EXT_FILEINFO=false
 ARG PHP_EXT_GETTEXT=false
-ARG PHP_EXT_INTL=false
 ARG PHP_EXT_MYSQLI=false
 ARG PHP_EXT_OPCACHE=false
 ARG PHP_EXT_PCNTL=false
@@ -140,9 +141,10 @@ RUN get_ext () { if [ $1 = true ]; then exts="$exts $2"; fi } && \
     git config --global user.name "Tornike" && git config --global user.email "tnanobashvili92@gmail.com" && \
     apt-get install -y nodejs && \
     echo "Node.js has been successfully installed\n" && \
-    curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get update && apt-get install yarn && \
+    apt-get install -y --no-install-recommends gnupg && \
+    curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor -o /usr/share/keyrings/yarnkey.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && apt-get install -y yarn && \
     echo "Yarn (dependency management tool for Node.js) has been successfully installed\n"
 
 RUN usermod -u 1000 www-data && \
